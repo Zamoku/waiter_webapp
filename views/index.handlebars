@@ -4,40 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{!-- <link rel="stylesheet" href="style.css">
+    <link href="/css/styles.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="/public/css/style.css">
+    
     <title>Waiter's App</title>
+   </head>
+<body class="">
+    
+    <div class="bg-amber-200 m-8">
+<h1 class="text-3xl font-bold underline text-center pt-5">
+    Hi, Welcome to the waiters app!
+  </h1>
+  
+    <form class="container mx-auto text-center pt-9" action="/waiter" method="POST">
+    <label class="px-5" for="">Waiters name:</label>
+    <input class="" type="text" name="setWaiter">
 
-    <form class="login_page" action="/waiter" method="POST">
-    <label for="">Waiters name:</label>
-    <input type="text" name="setWaiter">
-
-    <button type="submit">Send</button>
+    <button class="rounded-full bg-zinc-300 ring-10" type="submit">Send</button>
 
     {{!-- <div>{{waiter}}</div> --}}
-    <div class="waiter">
+    <div class="m-1 bg-slate-400">
+     
+      {{!-- <p class="">{{name}}</p> --}}
 
-				{{#each waiter}}
-				<li>{{name}}</li>
+				{{!-- {{#each waiter_name}}
+				<p>Hi<strong>{{name}}</strong>, Welcome to the waiters app</p>
 
-				{{/each}}
+				{{/each}} --}}
 
+        
 			</div>
+
+
+        {{!-- <p>You will be redirected in a few seconds...</p> --}}
+
+        {{!-- <script>
+          setTimeout(function () {
+           // after 2 seconds
+           window.location = "/schedule";
+          }, 9000)
+        </script> --}}
+
     </form>
 
-    <form action="/schedule" method="POST">
+   
+</div>
 
-					<strong></strong>
-					<input type="checkbox" name="days" value="Monday">Monday<br>
-					<input type="checkbox" name="days" value="Tuesday">Tuesday<br>
-					<input type="checkbox" name="days" value="Wednesday">Wednesday<br>
-					<input type="checkbox" name="days" value="Thursday">Thursday<br>
-                    <input type="checkbox" name="days" value="Friday">Friday<br>
-                    <input type="checkbox" name="days" value="Saturday">Saturday<br>
-                    <input type="checkbox" name="days" value="Sunday">Sunday<br>
-
-					<button class="filter btn" type="submit">Schedule</button>
-			</form>
-</head>
-<body>
     
 </body>
 </html>

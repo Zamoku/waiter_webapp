@@ -1,0 +1,22 @@
+<div>
+	<form class="container" action="/schedule/{{name}}" method="POST">
+
+		<div class="bg-amber-200 m-8 p-6">
+			<strong>Hi {{name}} {{day}} Please check the days that you would like to work:</strong><br>
+
+			<div class="flex flex-row flex-wrap grid grid-cols-4 gap-4">
+
+				<div class=""><input type="checkbox" name="days" value="Monday">Monday</div>
+				<div><input type="checkbox" name="days" value="Tuesday">Tuesday</div>
+				<div><input type="checkbox" name="days" value="Wednesday">Wednesday</div>
+				<div><input type="checkbox" name="days" value="Thursday">Thursday</div>
+				<div><input type="checkbox" name="days" value="Friday">Friday</div>
+				<div><input type="checkbox" name="days" value="Saturday">Saturday</div>
+				<div><input type="checkbox" name="days" value="Sunday">Sunday</div>
+
+				<button class="filter btn" type="submit">Schedule</button>
+			</div>
+		</div>
+	</form>
+
+</div>

@@ -1,0 +1,29 @@
+<h4>Admin page</h4>
+
+<form action="/admin_waiter" method="POST">
+
+<p>Hello</p>
+
+
+ {{!-- {{#each waiter}}
+  <ul class="">
+    <li class="" ><a class="" href="/admin_waiter/{{name}}" >{{name}}</a> <span>
+        <a class="delete_btn" href="/admin_waiter/{{name}}" type="" name="delete_btn">Delete</a></span></li>
+  </ul>
+  {{/each}} --}}
+
+  </form>
+
+<form action="/admin" method="POST">
+
+<p>Select the name and see the schedules of each waiter:</p>
+
+
+ {{#each waiter}}
+  <ul class="">
+    <li class="" ><a class="" href="/showScheduledDays/{{name}}" >{{name}}</a> <span>
+        <a class="delete_btn" href="/admin/{{name}}" type="" name="delete_btn">Delete</a></span></li>
+  </ul>
+  {{/each}}
+
+  </form>

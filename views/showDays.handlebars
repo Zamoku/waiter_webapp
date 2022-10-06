@@ -1,0 +1,14 @@
+<form action="/showScheduledDays/{{name}}" method="POST">
+		<div>
+		
+
+			{{#each schedule}}
+            <p>{{name}}</p>
+			<ul>
+
+				<li><strong>{{day}}</strong></li>
+			</ul>
+
+			{{/each}}
+		</div>
+	</form>

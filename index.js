@@ -56,11 +56,14 @@ app.use(express.static('public'));
 
 app.get('/', waiterRoute.display);
 app.post('/waiter', waiterRoute.add);
-app.get('/schedule', waiterRoute.addDays);
+app.get('/schedule/:setWaiter', waiterRoute.displayDays);
+app.post('/schedule/:name', waiterRoute.addDays);
+app.get('/showScheduledDays/:name', waiterRoute.displayPickedDays);
+app.get('/admin_waiter/:name', waiterRoute.admin_waiterDays);
 
 const PORT = process.env.PORT || 3003
 
-app.listen(PORT, function () {
+app.listen(PORT, function() {
     console.log('App started at port:', PORT)
 
 })

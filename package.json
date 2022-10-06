@@ -1,0 +1,36 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.1.8"
+  },
+  "name": "waiter_webapp",
+  "description": "\"#Waiter_webapp  Creating a web application to help my sister schedule weekly waiter shifts who is running a coffee shop in town.\"",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build-css": "tailwindcss build -i src/styles.css -o public/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zamoku/waiter_webapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zamoku/waiter_webapp/issues"
+  },
+  "homepage": "https://github.com/Zamoku/waiter_webapp#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.20",
+    "pg-promise": "^10.12.0"
+  }
+}
