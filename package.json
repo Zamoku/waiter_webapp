@@ -10,7 +10,9 @@
     "test": "test"
   },
   "scripts": {
-    "build-css": "tailwindcss build -i src/styles.css -o public/css/style.css"
+    "build-css": "tailwindcss build -i src/styles.css -o public/css/style.css",
+    "test": "mocha",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

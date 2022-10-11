@@ -33,7 +33,7 @@ HAVING count(*) > 1;
 
 SELECT STRING_AGG(users.name, ',') from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.id = 1;
 
-ALTER TABLE users ADD COLUMN email varchar(255), Add column code varchar(10); 
+ALTER TABLE users ADD COLUMN email varchar(255) NOT NULL, Add column code varchar(255) NOT NULL; 
 
 ALTER TABLE users ALTER COLUMN code varchar(255); 
 
