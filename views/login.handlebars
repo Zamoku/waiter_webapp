@@ -1,0 +1,44 @@
+ <div class="bg-amber-200 m-8">
+<h1 class="text-3xl font-bold underline text-center pt-5">
+    Hi, Welcome to the waiters app!
+  </h1>
+  
+    <form class="container mx-auto text-center pt-9" action="/login/{{username}}" method="POST">
+    <label class="px-5" for="">Verification Code:</label>
+    <input class="" type="text" name="addCode">
+
+    <button class="rounded-full bg-zinc-300 ring-10" type="submit">Send</button>
+
+    {{!-- <div>{{waiter}}</div> --}}
+    <div class="m-1 bg-slate-400">
+     
+      {{!-- <p class="">{{name}}</p> --}}
+
+				{{!-- {{#each waiter_name}}
+				<p>Hi<strong>{{name}}</strong>, Welcome to the waiters app</p>
+
+				{{/each}} --}}
+
+        
+			</div>
+
+          {{#if messages.success}}
+            <div class="success">
+                <p id="successMessage"> {{messages.success}}</p>
+
+            </div>
+            {{/if}}
+
+        {{!-- <p>You will be redirected in a few seconds...</p> --}}
+
+        {{!-- <script>
+          setTimeout(function () {
+           // after 2 seconds
+           window.location = "/schedule";
+          }, 9000)
+        </script> --}}
+
+    </form>
+
+   
+</div>

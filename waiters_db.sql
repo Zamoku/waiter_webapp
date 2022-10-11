@@ -1,6 +1,8 @@
 CREATE TABLE IF NOT EXISTS users (
     id serial primary key, 
-    name VARCHAR(255) not null
+    name VARCHAR(255) not null,
+    email VARCHAR(255) NOT NULL,
+    code VARCHAR(255) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS days(
@@ -14,12 +16,26 @@ CREATE TABLE IF NOT EXISTS booked_days(
     booked_day_id INT,
     FOREIGN KEY(booked_day_id) REFERENCES days(id)
 );
+-- CREATE TABLE IF NOT EXISTS admin_table(
+--     id serial primary key, 
+--     booked_day_id INT,
+--     FOREIGN KEY(booked_day_id) REFERENCES days(id),
+--     name_id INT,
+--     FOREIGN KEY(name_id) REFERENCES users(id)
+-- );
+
 
 -- INSERT INTO days(day) VALUES ('Monday'),('Tuesday'),('Wednesday'),('Thursday'),('Friday');
 -- INSERT INTO users(name, booked_day_id) VALUES ('Nomzamo', '1')
 
--- ALTER TABLE users
--- ADD COLUMN booked_day_id INT, 
+SELECT name_id, booked_day_id, count(*) FROM booked_days GROUP BY name_id, booked_day_id
+HAVING count(*) > 1;
+
+SELECT STRING_AGG(users.name, ',') from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.id = 1;
+
+ALTER TABLE users ADD COLUMN email varchar(255), Add column code varchar(10); 
+
+ALTER TABLE users ALTER COLUMN code varchar(255); 
 
 -- ADD FOREIGN KEY(booked_day_id) REFERENCES days(id);
 

@@ -54,12 +54,16 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
-app.get('/', waiterRoute.display);
-app.post('/waiter', waiterRoute.add);
+// app.get('/', waiterRoute.displayLogin);
+app.get('/', waiterRoute.displayReg);
+app.post('/', waiterRoute.addUser);
+app.get('/login/:name', waiterRoute.displayLogin);
+app.post('/login/:name', waiterRoute.addCode);
 app.get('/schedule/:setWaiter', waiterRoute.displayDays);
 app.post('/schedule/:name', waiterRoute.addDays);
-app.get('/showScheduledDays/:name', waiterRoute.displayPickedDays);
-app.get('/admin_waiter/:name', waiterRoute.admin_waiterDays);
+// app.get('/showScheduledDays/:name', waiterRoute.admin_waiterDays);
+app.get('/admin_waiter/:name', waiterRoute.displayPickedDays); 
+app.get('/reset', waiterRoute.removeWaiters);
 
 const PORT = process.env.PORT || 3003
 

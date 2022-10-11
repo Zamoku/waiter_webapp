@@ -2,28 +2,38 @@
 
 <form action="/admin_waiter" method="POST">
 
-<p>Hello</p>
+  <p>Hello</p>
 
 
- {{!-- {{#each waiter}}
+  {{!-- {{#each waiter}}
   <ul class="">
-    <li class="" ><a class="" href="/admin_waiter/{{name}}" >{{name}}</a> <span>
+    <li class=""><a class="" href="/admin_waiter/{{name}}">{{name}}</a> <span>
         <a class="delete_btn" href="/admin_waiter/{{name}}" type="" name="delete_btn">Delete</a></span></li>
   </ul>
   {{/each}} --}}
 
-  </form>
+</form>
 
 <form action="/admin" method="POST">
 
-<p>Select the name and see the schedules of each waiter:</p>
+  <p>Select the name and see the schedules of each waiter:</p>
 
 
- {{#each waiter}}
+  {{#each waiter}}
   <ul class="">
-    <li class="" ><a class="" href="/showScheduledDays/{{name}}" >{{name}}</a> <span>
-        <a class="delete_btn" href="/admin/{{name}}" type="" name="delete_btn">Delete</a></span></li>
+    <li class=""><a class="" href="/showScheduledDays/{{name}}">{{name}}</a> <span>
+        <a class="admin" href="/admin/{{name}}" type="" name="admin">Delete</a></span></li>
   </ul>
   {{/each}}
 
-  </form>
+
+  {{#if messages.success}}
+  <div class="success">
+    <p id="successMessage"> {{messages.success}}</p>
+
+  </div>
+  {{/if}}
+
+</form>
+
+  <a href="/reset" name="reset">Reset</a>

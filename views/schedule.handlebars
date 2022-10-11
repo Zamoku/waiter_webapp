@@ -16,7 +16,15 @@
 
 				<button class="filter btn" type="submit">Schedule</button>
 			</div>
+
 		</div>
 	</form>
+
+			  {{#if messages.success}}
+            <div class="success">
+                <p id="successMessage"> {{messages.success}}</p>
+
+            </div>
+            {{/if}}
 
 </div>

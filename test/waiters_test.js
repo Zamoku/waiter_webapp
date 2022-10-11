@@ -91,6 +91,7 @@ describe('The basic database web app', function () {
     // });
     afterEach('Drop all tables', async function () {
         //clean the tables after each test run
+        await db.query("delete from booked_days;");
         await db.query("delete from users;");
 
     });

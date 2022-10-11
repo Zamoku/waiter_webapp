@@ -1,14 +1,62 @@
 <form action="/showScheduledDays/{{name}}" method="POST">
-		<div>
+	<div>
+
+
+		<h3>Hi {{name}}, you have booked the following days:</h3> <br>
+
+	
+
+		<table class="table table-striped table-secondary table-hover table-responsive-md w-auto">
+
+			<th>Monday</th>
+			<th>Tuesday</th>
+			<th>Wednesday</th>
+			<th>Thursday</th>
+			<th>Friday</th>
+			<th>Saturday</th>
+			<th>Sunday</th>
+<tr>
+		<td>
+				{{#each monday}}
+				{{name}}
+				<a class="admin" href="/showScheduledDays/{{name}}" type="" name="admin">Update</a></span> <br>
+				{{/each}}
+			</td>
+
+			<td>
+				{{#each tuesday}}
+				{{name}} <br>
+				{{/each}}
+			</td>
+			<td>
+				{{#each wednesday}}
+				{{name}} <br>
+				{{/each}}
+			</td>
+			<td>
+				{{#each thursday}}
+				{{name}} <br>
+				{{/each}}
+			</td>
+			<td>
+				{{#each friday}}
+				{{name}} <br>
+				{{/each}}
+			</td>
+			<td>
+				{{#each saturday}}
+				{{name}} <br>
+				{{/each}}
+			</td>
+			<td>
+				{{#each sunday}}
+				{{name}} <br>
+				{{/each}}
+			</td>
+</tr>
 		
 
-			{{#each schedule}}
-            <p>{{name}}</p>
-			<ul>
 
-				<li><strong>{{day}}</strong></li>
-			</ul>
 
-			{{/each}}
-		</div>
-	</form>
+	</div>
+</form>
