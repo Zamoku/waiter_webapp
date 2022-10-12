@@ -94,14 +94,14 @@ module.exports = function WaitersRoutes(waiter) {
     async function displayDays(req, res) {
 
         let waiter_name = req.params.setWaiter
-        let mon_count = await waiter.countNames('Monday')
-        // console.log(mon_count)
-        let tue_count= await waiter.countNames('Tuesday')
-        let wed_count= await waiter.countNames('Wednesday')
-        let thur_count= await waiter.countNames('Thursday')
-        let fri_count= await waiter.countNames('Friday')
-        let sat_count= await waiter.countNames('Saturday')
-        let sun_count= await waiter.countNames('Sunday')
+        // let mon_count = await waiter.countNames('Monday')
+        // // console.log(mon_count)
+        // let tue_count= await waiter.countNames('Tuesday')
+        // let wed_count= await waiter.countNames('Wednesday')
+        // let thur_count= await waiter.countNames('Thursday')
+        // let fri_count= await waiter.countNames('Friday')
+        // let sat_count= await waiter.countNames('Saturday')
+        // let sun_count= await waiter.countNames('Sunday')
 
        
 
@@ -125,7 +125,7 @@ module.exports = function WaitersRoutes(waiter) {
                 friday: await waiter.showDaysforAdmin("Friday"),
                 saturday: await waiter.showDaysforAdmin("Saturday"),
                 sunday: await waiter.showDaysforAdmin("Sunday"),
-                mon_count: mon_count
+                // mon_count: mon_count
               
                 // if(mon_count > 3){
                 //     danger = "danger"
