@@ -4,10 +4,10 @@ module.exports = function WaitersRoutes(waiter) {
     const uid = new ShortUniqueId({ length: 6 });
 
     async function displayReg(req, res) {
-        let user = req.session.user
+        // let user = req.body.user
 
         res.render('register', {
-            user: req.session.user,
+            // user: req.body.user,
 
 
         })
@@ -62,7 +62,7 @@ module.exports = function WaitersRoutes(waiter) {
         let user = req.session.user
         var username = req.params.name
         res.render('login', {
-            user: req.session.user,
+            // user: req.session.user,
             username: username
         })
 
