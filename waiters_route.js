@@ -59,7 +59,7 @@ module.exports = function WaitersRoutes(waiter) {
     }
 
     async function displayLogin(req, res) {
-        let user = req.session.user
+        // let user = req.session.user
         var username = req.params.name
         res.render('login', {
             // user: req.session.user,
