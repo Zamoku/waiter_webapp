@@ -75,11 +75,11 @@ module.exports = function Waiters(db) {
             let resultDay = await db.oneOrNone('Select days.id from days where days.day = $1', [day])
         
             
-            if  (getBookedDay == null && getBookedUser == null) {
+            // if  (getBookedDay == null && getBookedUser == null) {
 
                 let results = await db.none("INSERT INTO booked_days(name_id, booked_day_id) VALUES ($1,$2)", [resultName.id, resultDay.id])
 
-            }
+            // }
                 //  else if (getBookedUser.name_id !== resultName.id && getBookedDay !== resultDay.id) {
 
                     // let results = await db.none("INSERT INTO booked_days(name_id, booked_day_id) VALUES ($1,$2)", [resultName.id, resultDay.id])
@@ -87,6 +87,15 @@ module.exports = function Waiters(db) {
 
         }
 
+    }
+
+    async function countNames(weekDay){
+        let danger = ''
+        let result = await db.oneOrNone("SELECT count(users.name), days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1 GROUP BY days.day", [weekDay])
+      //  SELECT count(users.name), days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1 GROUP BY days.day
+
+
+        return result.count
     }
 
     async function removeDays() {
@@ -142,6 +151,7 @@ module.exports = function Waiters(db) {
         removeDays,
         findUser,
         getCode,
-        getDays
+        getDays,
+        countNames
     }
 }

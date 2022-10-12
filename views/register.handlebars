@@ -1,39 +1,51 @@
-<form autocomplete="off" class="form-inline" action="/" method="POST">
-<h3><b>Register</b></h3>
-        <div class="form-group row">
+<div class="container-fluid bg-1 ">
+    <form autocomplete="off" class="form-horizontal" action="/" method="POST">
+
+        <h2><b>Register</b></h2>
+        <div class="form-group">
 
             {{#if messages.success}}
-            <div class="success">
+            <div class="alert alert-success" >
                 <p id="successMessage"> {{messages.success}}</p>
 
             </div>
             {{/if}}
 
-             {{#if messages.error}}
-            <div class="error">
+            {{#if messages.error}}
+            <div id="successMessage" class="alert alert-danger">
                 <p id="successMessage"> {{messages.error}}</p>
-            <script type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script> 
+                <script
+                    type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
 
             </div>
             {{/if}}
-            
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="">Firstname:</label>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Firstname:</label>
+                <div class="col-sm-2">
                 <input class="form-control" type="text" name="setWaiter">
+                </div>
             </div>
-            
-            <div class="form-group row">
 
-                <label class="col-sm-2 col-form-label" for="">Lastname:</label>
+            <div class="form-group">
+
+                <label class="control-label col-sm-2" for="">Lastname:</label>
+                <div class="col-sm-2">
                 <input class="form-control" type="text" name="lastname">
+                </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group">
 
-                <label class="col-sm-2 col-form-label" for="">Email:</label>
+                <label class="control-label col-sm-2" for="">Email:</label>
+                <div class="col-sm-2" >
                 <input class="form-control" type="text" name="email">
+                </div>
+            </div>
+            <div class="col-sm-offset-2 col-sm-4">
+            <button class="btn btn-success" type="submit">Submit</button>
             </div>
         </div>
-        <button type="submit">Submit</button>
 
     </form>
+</div>

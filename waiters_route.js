@@ -17,7 +17,7 @@ module.exports = function WaitersRoutes(waiter) {
 
     async function addUser(req, res) {
 
-
+        let regex = /^[a-z A-Z]+$/gi
         let name = req.body.setWaiter
         let email = req.body.email
 
@@ -31,6 +31,13 @@ module.exports = function WaitersRoutes(waiter) {
 
             res.redirect("/")
         }
+        else if (!regex.test(name)) {
+
+            req.flash('error', 'Oops, your name seems to have characters..check and enter again')
+
+            res.redirect("/")
+        }
+
 
         else if (name, email == "") {
             req.flash('error', 'No user or email provided')
@@ -62,9 +69,10 @@ module.exports = function WaitersRoutes(waiter) {
     }
 
     async function addCode(req, res) {
-        let { addCode } = req.body
+        let {addCode } = req.body
         let user = req.params.name
         let getCode = await waiter.getCode(user)
+        
 
 
         if (getCode.code === addCode) {
@@ -75,7 +83,7 @@ module.exports = function WaitersRoutes(waiter) {
         } else if (getCode.code !== addCode) {
 
 
-            req.flash('error', 'Enter the correct code given!')
+            req.flash('error', 'ENTER THE CORRECT CODE GIVEN!')
 
             res.redirect("/login/" + user)
         }
@@ -86,7 +94,16 @@ module.exports = function WaitersRoutes(waiter) {
     async function displayDays(req, res) {
 
         let waiter_name = req.params.setWaiter
+        let mon_count = await waiter.countNames('Monday')
+        // console.log(mon_count)
+        let tue_count= await waiter.countNames('Tuesday')
+        let wed_count= await waiter.countNames('Wednesday')
+        let thur_count= await waiter.countNames('Thursday')
+        let fri_count= await waiter.countNames('Friday')
+        let sat_count= await waiter.countNames('Saturday')
+        let sun_count= await waiter.countNames('Sunday')
 
+       
 
         if (waiter_name !== "Admin") {
 
@@ -107,7 +124,17 @@ module.exports = function WaitersRoutes(waiter) {
                 thursday: await waiter.showDaysforAdmin('Thursday'),
                 friday: await waiter.showDaysforAdmin("Friday"),
                 saturday: await waiter.showDaysforAdmin("Saturday"),
-                sunday: await waiter.showDaysforAdmin("Sunday")
+                sunday: await waiter.showDaysforAdmin("Sunday"),
+                mon_count: mon_count
+              
+                // if(mon_count > 3){
+                //     danger = "danger"
+                // }
+                // else{
+                //     danger = "warning"
+                // }
+                // return danger
+                
             })
         }
 

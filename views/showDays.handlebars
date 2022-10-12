@@ -2,14 +2,14 @@
 	<div>
 
 
-		<h3>Hi {{name}}, you have booked the following days:</h3> <br>
+		<h2>Hi {{name}}, below is the schedule for available waiters:</h2> <br>
 
 	
 
-		<table class="table table-striped table-secondary table-hover table-responsive-md w-auto">
+		<table class="table table-striped table-warning table-hover table-responsive-md w-auto">
 
-			<th>Monday</th>
-			<th>Tuesday</th>
+			<th class="">Monday</th>
+			<th class="">Tuesday</th>
 			<th>Wednesday</th>
 			<th>Thursday</th>
 			<th>Friday</th>
@@ -17,10 +17,14 @@
 			<th>Sunday</th>
 <tr>
 		<td>
+
 				{{#each monday}}
-				{{name}}
-				<a class="admin" href="/showScheduledDays/{{name}}" type="" name="admin">Update</a></span> <br>
+				{{name}} <br>
+				{{!-- <a class="admin" href="/showScheduledDays/{{name}}" type="" name="admin">Update</a></span> <br> --}}
 				{{/each}}
+			{{!-- {{#if mon_count}}
+			{{count}}
+			{{/if}} --}}
 			</td>
 
 			<td>

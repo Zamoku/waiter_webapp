@@ -4,9 +4,13 @@ td {
   padding: 10px;
   border: 1px solid black;
   border-collapse: collapse;
-
+  
 }
+
 form{
   margin-left: 20px;
   margin-top: 20px;
+}
+.info{
+  background-color : red;
 }

@@ -1,27 +1,42 @@
+<style>
+      .day {
+        font-family: 'Trirong';
+	    font-size:large;
+		padding-left: 18vh;
+        
+      }
+	  .forfont{
+		   font-family: 'Trirong';
+	       font-size:large;
+	  }
+    </style>
 <div>
 	<form class="container" action="/schedule/{{name}}" method="POST">
-
 		<div class="bg-amber-200 m-8 p-6">
-			<strong>Hi {{name}} {{day}} Please check the days that you would like to work:</strong><br>
 
-			<div class="flex flex-row flex-wrap grid grid-cols-4 gap-4">
+			<div class="forfont text-center"><h4><strong><u>Hi <span class="text-warning">{{name}},</span> please select the days that you would like to work on:</u></strong><br></h4></div>
+			<br>
 
-				<div class=""><input type="checkbox" name="days" value="Monday">Monday</div>
-				<div><input type="checkbox" name="days" value="Tuesday">Tuesday</div>
-				<div><input type="checkbox" name="days" value="Wednesday">Wednesday</div>
-				<div><input type="checkbox" name="days" value="Thursday">Thursday</div>
-				<div><input type="checkbox" name="days" value="Friday">Friday</div>
-				<div><input type="checkbox" name="days" value="Saturday">Saturday</div>
-				<div><input type="checkbox" name="days" value="Sunday">Sunday</div>
+			<div class="day d-grid gap-3 ml-100 b-1">
 
-				<button class="filter btn" type="submit">Schedule</button>
+				<div class="checkbox checkbox-success day"><input class="gap-2" type="checkbox" name="days" value="Monday">Monday</div>
+				<div class="checkbox checkbox-success day"><input type="checkbox" name="days" value="Tuesday">Tuesday</div>
+				<div class="day checkbox checkbox-success" ><input type="checkbox" name="days" value="Wednesday">Wednesday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Thursday">Thursday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Friday">Friday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Saturday">Saturday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Sunday">Sunday</div><br>
+				<div class="day"> 
+				<button class="btn btn-success" type="submit">Schedule</button>
+				</div>
 			</div>
 
 		</div>
 	</form>
+	<br>
 
 			  {{#if messages.success}}
-            <div class="success">
+            <div class="alert alert-success text-center">
                 <p id="successMessage"> {{messages.success}}</p>
 
             </div>
