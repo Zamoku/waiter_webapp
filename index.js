@@ -7,6 +7,7 @@ const Waiters = require('./waiters');
 const WaitersRoutes = require('./waiters_route');
 const WaitersFunct = require('./waiters_non_db');
 
+
 const pgPromise = require("pg-promise")
 const pgp = pgPromise({})
 
@@ -61,8 +62,10 @@ app.get('/login/:name', waiterRoute.displayLogin);
 app.post('/login/:name', waiterRoute.addCode);
 app.get('/schedule/:setWaiter', waiterRoute.displayDays);
 app.post('/schedule/:name', waiterRoute.addDays);
-// app.get('/showScheduledDays/:name', waiterRoute.admin_waiterDays);
+app.get('/resetDay', waiterRoute.removeWaiterDay);
+//removeWaiterDay
 app.get('/admin_waiter/:name', waiterRoute.displayPickedDays); 
+// app.post('/admin_waiter/:name', waiterRoute.displayPickedDays); 
 app.get('/reset', waiterRoute.removeWaiters);
 
 const PORT = process.env.PORT || 3003

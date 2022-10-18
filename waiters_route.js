@@ -20,16 +20,16 @@ module.exports = function WaitersRoutes(waiter) {
         let regex = /^[a-z A-Z]+$/gi
         let name = req.body.setWaiter
         let email = req.body.email
-
+        // name = req.session.
         const code = uid()
 
         const get_user = await waiter.findUser(name)
 
         if (get_user.count == 1) {
 
-            req.flash('error', 'User already exists')
+            req.flash('welcomeback','Hi, ' + name + ' Welcome back!')
 
-            res.redirect("/")
+            res.redirect("/schedule/" + name)
         }
         else if (!regex.test(name)) {
 
@@ -94,23 +94,21 @@ module.exports = function WaitersRoutes(waiter) {
     async function displayDays(req, res) {
 
         let waiter_name = req.params.setWaiter
-        // let mon_count = await waiter.countNames('Monday')
-        // // console.log(mon_count)
-        // let tue_count= await waiter.countNames('Tuesday')
-        // let wed_count= await waiter.countNames('Wednesday')
-        // let thur_count= await waiter.countNames('Thursday')
-        // let fri_count= await waiter.countNames('Friday')
-        // let sat_count= await waiter.countNames('Saturday')
-        // let sun_count= await waiter.countNames('Sunday')
-
+        let waiter_days = req.body.days
+        let getDays = await waiter.countNames()
        
+        
+        let getpickedDays =  await waiter.keepdaysChecked(req.body.days)
+
 
         if (waiter_name !== "Admin") {
 
             // req.flash('success', 'Welcome!')
             res.render('schedule', {
                 name: waiter_name,
-                waiter: await waiter.showDays()
+                waiter: await waiter.showDays(),
+                checkedDays: await waiter.keepdaysChecked(req.body.days)
+
 
             })
         }
@@ -118,6 +116,10 @@ module.exports = function WaitersRoutes(waiter) {
             // req.flash('success', 'Welcome!')
             res.render('showDays', {
                 name: waiter_name,
+                getDay: waiter_days,
+                getDays: await waiter.countNames(),
+        
+                // getDays: await waiter.getDays(),
                 monday: await waiter.showDaysforAdmin("Monday"),
                 tuesday: await waiter.showDaysforAdmin("Tuesday"),
                 wednesday: await waiter.showDaysforAdmin("Wednesday"),
@@ -127,13 +129,6 @@ module.exports = function WaitersRoutes(waiter) {
                 sunday: await waiter.showDaysforAdmin("Sunday"),
                 // mon_count: mon_count
               
-                // if(mon_count > 3){
-                //     danger = "danger"
-                // }
-                // else{
-                //     danger = "warning"
-                // }
-                // return danger
                 
             })
         }
@@ -142,10 +137,14 @@ module.exports = function WaitersRoutes(waiter) {
     async function addDays(req, res) {
 
         req.flash('success', 'You have succesfully added your working days!')
+        
+         
+       await waiter.pickDays(req.params.name, req.body.days)
+    //   let getpickedDays =  await waiter.keepdaysChecked(req.body.days)
+      
 
-        // console.log(req.params.name)
-        // console.log(req.body.days)
-        await waiter.pickDays(req.params.name, req.body.days)
+
+    //    if(req.body.days.checked())
 
         res.redirect(`/schedule/${req.params.name}`)
 
@@ -154,38 +153,31 @@ module.exports = function WaitersRoutes(waiter) {
     async function removeWaiters(req, res) {
         let waiter_name = req.params.name
 
-        // console.log(waiter_name)
-
+        
         req.flash('success', 'You have reseted the schedule')
         await waiter.removeDays()
 
         res.redirect('/reset')
 
     }
-    // async function admin_waiterDays(req, res) {
-    //     let waiter_name = req.params.name
 
+    async function removeWaiterDay(req, res){
 
-    //     // console.log(selectD)
-    //     res.render('showDays', {
-    //         name: waiter_name,
-    //         days: await waiter.showDays(),
-    //         monday: await waiter.showDaysforAdmin("Monday"),
-    //         tuesday: await waiter.showDaysforAdmin("Tuesday"),
-    //         wednesday: await waiter.showDaysforAdmin("Wednesday"),
-    //         thursday: await waiter.showDaysforAdmin('Thursday'),
-    //         friday: await waiter.showDaysforAdmin("Friday"),
-    //         saturday: await waiter.showDaysforAdmin("Saturday"),
-    //         sunday: await waiter.showDaysforAdmin("Sunday")
+        
+        let waiter_name = req.params.name
+        let getdayId = req.body.day_id
+        
 
+         req.flash('success', 'You have removed the waiters for this day')
+         await waiter.deleteWaiterDay(getdayId)
 
-    //     })
-
-    // }
+        res.redirect('/resetDay')
+    }
+   
     async function displayPickedDays(req, res) {
 
         let waiter_name = await waiter.selectedDays(req.body.setWaiter)
-
+            
 
         res.render('admin', {
             name: waiter_name,
@@ -201,7 +193,8 @@ module.exports = function WaitersRoutes(waiter) {
         displayPickedDays,
         removeWaiters,
         displayReg,
-        addCode
+        addCode,
+        removeWaiterDay,
         // admin_waiterDays
 
 

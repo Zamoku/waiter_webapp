@@ -14,3 +14,15 @@ form{
 .info{
   background-color : red;
 }
+.danger{
+  background-color: crimson;
+  color: red;
+}
+.warning{
+  background-color: orange;
+  color: orange;
+}
+.booked{
+  background-color: green;
+ 
+}

@@ -14,6 +14,15 @@
 	<form class="container" action="/schedule/{{name}}" method="POST">
 		<div class="bg-amber-200 m-8 p-6">
 
+
+			  {{#if messages.welcomeback}}
+            <div class="alert alert-success text-center">
+                <p id="successMessage"> {{messages.welcomeback}}</p>
+
+            </div>
+            {{/if}}
+			
+
 			<div class="forfont text-center"><h4><strong><u>Hi <span class="text-warning">{{name}},</span> please select the days that you would like to work on:</u></strong><br></h4></div>
 			<br>
 
@@ -36,9 +45,10 @@
 	<br>
 
 			  {{#if messages.success}}
-            <div class="alert alert-success text-center">
-                <p id="successMessage"> {{messages.success}}</p>
-
+            <div id="successMessage" class="alert alert-success text-center">
+                <p > {{messages.success}}</p>
+				  <script
+                    type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
             </div>
             {{/if}}
 

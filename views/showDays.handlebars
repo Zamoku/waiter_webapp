@@ -5,62 +5,69 @@
 		<h2>Hi {{name}}, below is the schedule for available waiters:</h2> <br>
 
 	
-
+	<input type="text" name="days">{{getDay}}</div>
 		<table class="table table-striped table-warning table-hover table-responsive-md w-auto">
 
-			<th class="">Monday</th>
-			<th class="">Tuesday</th>
-			<th>Wednesday</th>
-			<th>Thursday</th>
-			<th>Friday</th>
-			<th>Saturday</th>
-			<th>Sunday</th>
+		
+
+			{{#each getDays}}
+			<th class="{{color}}" value= "{{id}}" name = "day_id">{{day}}</th>
+			{{/each}}
 <tr>
 		<td>
 
 				{{#each monday}}
 				{{name}} <br>
-				{{!-- <a class="admin" href="/showScheduledDays/{{name}}" type="" name="admin">Update</a></span> <br> --}}
 				{{/each}}
-			{{!-- {{#if mon_count}}
-			{{count}}
-			{{/if}} --}}
+				<a class="delete_btn" href="/schedule/{{name}}" type="" name="day_id">Remove waiters for Monday</a><br>
+				<a class="admin" href="/schedule/{{name}}" type="" name="admin">Reschedule waiters for Monday</a> <br>
+		
 			</td>
 
 			<td>
 				{{#each tuesday}}
 				{{name}} <br>
 				{{/each}}
+				<a class="delete_btn" href="/resetDay" va type="" name="day_id">Remove waiters for Tuesday</a>
 			</td>
 			<td>
 				{{#each wednesday}}
 				{{name}} <br>
 				{{/each}}
+				<a class="delete_btn" href="/schedule/{{name}}" type="" name="delete_btn">Remove waiters for Wednesday</a></span>
 			</td>
 			<td>
 				{{#each thursday}}
 				{{name}} <br>
 				{{/each}}
+				<a class="delete_btn" href="/schedule/{{name}}" type="" name="delete_btn">Remove waiters for Thursday</a></span>
 			</td>
 			<td>
 				{{#each friday}}
 				{{name}} <br>
 				{{/each}}
+				<a class="delete_btn" href="/resetDay" type="" name="delete_btn">Remove waiters for Friday</a></span>
 			</td>
 			<td>
 				{{#each saturday}}
 				{{name}} <br>
 				{{/each}}
+				<a class="delete_btn" href="/resetDay" type="" name="delete_btn">Remove waiters for Monday</a><br>
+				<a class="admin" href="/resetDay" type="" name="admin">Reschedule waiters for Monday</a> <br>
 			</td>
 			<td>
 				{{#each sunday}}
 				{{name}} <br>
 				{{/each}}
+				<a class="delete_btn" href="/schedule/{{name}}" type="" name="delete_btn">Remove waiters for Monday</a><br>
+				<a class="admin" href="/schedule/{{name}}" type="" name="admin">Reschedule waiters for Monday</a> <br>
 			</td>
 </tr>
 		
 
 
-
+	 <p>Available waiters </p>
+	 <p>Fully booked</p>
+	 <p>Overbooked</p>
 	</div>
 </form>
