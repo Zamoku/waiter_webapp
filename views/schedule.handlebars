@@ -28,13 +28,13 @@
 
 			<div class="day d-grid gap-3 ml-100 b-1">
 
-				<div class="checkbox checkbox-success day"><input class="gap-2" type="checkbox" name="days" value="Monday">Monday</div>
-				<div class="checkbox checkbox-success day"><input type="checkbox" name="days" value="Tuesday">Tuesday</div>
-				<div class="day checkbox checkbox-success" ><input type="checkbox" name="days" value="Wednesday">Wednesday</div>
-				<div class="checkbox day"><input type="checkbox" name="days" value="Thursday">Thursday</div>
-				<div class="checkbox day"><input type="checkbox" name="days" value="Friday">Friday</div>
-				<div class="checkbox day"><input type="checkbox" name="days" value="Saturday">Saturday</div>
-				<div class="checkbox day"><input type="checkbox" name="days" value="Sunday">Sunday</div><br>
+				<div class="checkbox checkbox-success day"><input class="gap-2" type="checkbox" name="days" value="Monday" {{#if monday}}checked{{/if}}>Monday</div>
+				<div class="checkbox checkbox-success day"><input type="checkbox" name="days" value="Tuesday" {{#if tuesday}}checked{{/if}}>Tuesday</div>
+				<div class="day checkbox checkbox-success" ><input type="checkbox" name="days" value="Wednesday" {{#if wednesday}}checked{{/if}}>Wednesday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Thursday" {{#if thursday}}checked{{/if}}>Thursday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Friday" {{#if friday}}checked{{/if}}>Friday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Saturday" {{#if saturday}}checked{{/if}}>Saturday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Sunday" {{#if sunday}}checked{{/if}}>Sunday</div><br>
 				<div class="day"> 
 				<button class="btn btn-success" type="submit">Schedule</button>
 				</div>

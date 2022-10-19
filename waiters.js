@@ -63,7 +63,6 @@ module.exports = function Waiters(db) {
     }
 
     async function pickDays(name, days) {
-
         let arrayName = [name]
         let dd = Array.isArray(days) === false ? [days] : days
      
@@ -88,23 +87,16 @@ module.exports = function Waiters(db) {
     }
 
 
-    async function keepdaysChecked(days){
-        let dd = Array.isArray(days) === false ? [days] : days
-        let getDays = await showDays();
-       
-        let checked 
-        for(let ofDays of getDays){
-         
-        for(let days of dd){
-                  
-        if(ofDays.day === days){
-          checked = 'checked'
-             }  
-     }
+    async function keepdaysChecked(name, day){
+   
+      
+            let result = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where users.name = $1 and days.day = $2", [name, day])
+            
+            checked = result.length > 0 ? true : false
+
 
              return checked
 
-}
     }
 
     async function getDays() {
@@ -119,16 +111,17 @@ module.exports = function Waiters(db) {
          
 
         for(let day of weekDay){
-  
+            
             let result = await db.oneOrNone("Select count(*) from booked_days where booked_day_id = $1", [day.id])
           
-            const count = result.count;
+            const count = Number(result.count);
+            
          
     
                     if(count > 3){
                         day.color = "danger"
                     }
-                    else if(count == 3){
+                    else if(count === 3){
                         day.color = "booked"
                     }
                     else if(count < 3){
@@ -151,12 +144,10 @@ module.exports = function Waiters(db) {
         return results
     }
 
-    async function deleteWaiterDay(dayId) {
-
-        let getbookedDayId = await db.manyOrNone("SELECT distinct days.day, users.name from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1", [dayId])
-        let results = await db.none("Delete from booked_days where booked_day_id = $1;", [dayId]);
+    async function deleteWaiterDay(day) {
+        let getbookedDayId = await db.one("SELECT id from days where day = $1", [day])
+        let results = await db.none("Delete from booked_days where booked_day_id = $1;", [getbookedDayId.id]);
     
-        return results
     }
 
     //

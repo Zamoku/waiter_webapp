@@ -15,14 +15,28 @@ form{
   background-color : red;
 }
 .danger{
-  background-color: crimson;
-  color: red;
+  background-color: red !important;
+  
 }
 .warning{
-  background-color: orange;
-  color: orange;
+  background-color: orange !important;
+ 
 }
 .booked{
   background-color: green;
  
 }
+h3{
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a:link{
+  text-decoration: none;
+}
+/* .dot{
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+} */

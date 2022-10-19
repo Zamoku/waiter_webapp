@@ -62,10 +62,8 @@ app.get('/login/:name', waiterRoute.displayLogin);
 app.post('/login/:name', waiterRoute.addCode);
 app.get('/schedule/:setWaiter', waiterRoute.displayDays);
 app.post('/schedule/:name', waiterRoute.addDays);
-app.get('/resetDay', waiterRoute.removeWaiterDay);
-//removeWaiterDay
+app.get('/resetDay/:day', waiterRoute.removeWaiterDay);
 app.get('/admin_waiter/:name', waiterRoute.displayPickedDays); 
-// app.post('/admin_waiter/:name', waiterRoute.displayPickedDays); 
 app.get('/reset', waiterRoute.removeWaiters);
 
 const PORT = process.env.PORT || 3003
