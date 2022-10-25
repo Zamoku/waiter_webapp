@@ -40,3 +40,41 @@ a:link{
   border-radius: 50%;
   display: inline-block;
 } */
+
+.circle {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+.green {
+  background: green;
+}
+
+.red {
+  background: red;
+}
+
+.orange {
+  background: orange;
+}
+
+.box-me {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}
+
+.box-me > p {
+  height: 20px;
+  margin: 5px;
+  margin-right: 18px;
+}
+
+.bottom-row, .bottom-row td {
+  border-width: 1px 1px 0px 0px;
+}
+.initial-bottom-row td{
+  border-width: 1px 1px 0px 0px;
+}
