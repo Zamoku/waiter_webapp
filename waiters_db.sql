@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS booked_days(
 -- );
 
 
-INSERT INTO days(day) VALUES ('Monday'),('Tuesday'),('Wednesday'),('Thursda'),('Friday'),('Saturday'),('Sunday');
+INSERT INTO days(day) VALUES ('Monday'),('Tuesday'),('Wednesday'),('Thursday'),('Friday'),('Saturday'),('Sunday');
 -- INSERT INTO users(name, booked_day_id) VALUES ('Nomzamo', '1')
 
 -- SELECT name_id, booked_day_id, count(*) FROM booked_days GROUP BY name_id, booked_day_id
