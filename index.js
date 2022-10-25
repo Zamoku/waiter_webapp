@@ -56,7 +56,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 // app.get('/', waiterRoute.displayLogin);
-app.get('/', waiterRoute.displayReg);
+app.get('/', waiterRoute.displayRegPage);
 app.post('/', waiterRoute.addUser);
 app.get('/login/:name', waiterRoute.displayLogin);
 app.post('/login/:name', waiterRoute.addCode);

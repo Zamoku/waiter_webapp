@@ -22,8 +22,8 @@ module.exports = function Waiters(db) {
    /*Gets the number the user appears in the database */
     async function findUser(name) {
 
-
-        let result = await db.one("Select count(*) from users where name = $1", [name])
+        let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
+        let result = await db.one("Select count(*) from users where name = $1", [waiters_name])
 
         return result
     }
@@ -32,7 +32,8 @@ module.exports = function Waiters(db) {
 
     async function getCode(name) {
 
-        let uniq_code = await db.one("Select code from users where name = $1", [name])
+        let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
+        let uniq_code = await db.one("Select code from users where name = $1", [waiters_name])
 
         return uniq_code
 
@@ -67,10 +68,12 @@ module.exports = function Waiters(db) {
 
     /*This function gets the users ids and if it gets them it deletes them before adding new data*/
     async function pickDays(name, days) {
-        let arrayName = [name]
+
+        let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
+
         let dd = Array.isArray(days) === false ? [days] : days
      
-        let resultName = await db.one('Select users.id from users where users.name = $1; ', [name])
+        let resultName = await db.one('Select users.id from users where users.name = $1; ', [waiters_name])
 
         await db.none("Delete from booked_days where name_id = $1", [resultName.id])
        
@@ -92,8 +95,9 @@ module.exports = function Waiters(db) {
     /*Checks if the days are checked if true then keep them checked */
     async function keepdaysChecked(name, day){
    
+        let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
       
-            let result = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where users.name = $1 and days.day = $2", [name, day])
+            let result = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where users.name = $1 and days.day = $2", [waiters_name, day])
             // console.log(result)
             checked = result.length > 0 ? true : false
 
@@ -164,7 +168,10 @@ module.exports = function Waiters(db) {
     }
     /* */
     async function selectedDays(name) {
-        let results = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1", [name]);
+
+        let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
+        
+        let results = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1", [waiters_name]);
         // console.log(results)
         return results
     }
