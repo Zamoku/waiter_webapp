@@ -52,19 +52,19 @@ describe('The basic database web app', function () {
     // });
 
 
-    it('should be able to show the days the waiter has selected', async function () {
+    // it('should be able to show the days the waiter has selected', async function () {
 
-        let waiter = Waiters(db);
-        let getWaiter = await waiter.pickDays("Nomzamo", "Monday")
-        let getDays = await waiter.keepdaysChecked("Nomzamo", "Monday");
+    //     let waiter = Waiters(db);
+    //     let getWaiter = await waiter.pickDays("Nomzamo", "Monday")
+    //     let getDays = await waiter.keepdaysChecked("Nomzamo", "Monday");
 
-        let getDays2 = await waiter.keepdaysChecked("Yonela", "Monday");
+    //     let getDays2 = await waiter.keepdaysChecked("Yonela", "Monday");
 
 
-        assert.equal(false, getDays);
-        assert.equal(false, getDays2);
+    //     assert.equal(true, getDays);
+    //     assert.equal(false, getDays2);
 
-    });
+    // });
     // it('should bring back selected days of the specific user', async function () {
 
 
@@ -75,16 +75,16 @@ describe('The basic database web app', function () {
 
     // });
     
-    it('should be able to update the waiters days', async function () {
+    // it('should be able to update the waiters days', async function () {
 
 
-        let waiter = Waiters(db);
-        let reg = await waiter.keepdaysChecked('Nomzamo', 'Monday');
+    //     let waiter = Waiters(db);
+    //     let reg = await waiter.keepdaysChecked('Nomzamo', 'Monday');
 
 
-        assert.equal(true, reg);
+    //     assert.equal(true, reg);
 
-    });
+    // });
 
     // it('should get filter waiter numbers from Paarl the db test', async function () {
 
