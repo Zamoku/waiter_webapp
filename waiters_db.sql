@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS users (
-    id identity primary key, 
+    id serial primary key, 
     name VARCHAR(255) not null,
     email VARCHAR(255) NOT NULL,
     code VARCHAR(255) NOT NULL
