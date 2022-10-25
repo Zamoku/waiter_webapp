@@ -3,59 +3,88 @@ const Waiters = require('../waiters')
 const pgPromise = require("pg-promise");
 const pgp = pgPromise({})
 
+const ShortUniqueId = require("short-unique-id")
+const uid = new ShortUniqueId({ length: 6 });
+
+
 const connectionString = process.env.DATABASE_URL || 'postgresql://zamoe:zamo123@localhost:5432/waiters_db_test';
 
 const db = pgp(connectionString)
 
 
 describe('The basic database web app', function () {
-
-
+    
+    
     it('should insert waiters details when registering into the db test', async function () {
-
+        
+        const code = uid()
 
         let waiter = Waiters(db);
         let detailsWaiter = await waiter.addWaiter(
-            'Nomzamo', 'nomzamo@gmail.com'
+            'Zamoza', 'nomzamo@gmail.com', code
         );
 
-        let detailsWaiter2 = await waiter.addReg(
-            'Nomfundo', 'nomfundo@gmail.com'
+        let detailsWaiter2 = await waiter.addWaiter(
+            'Dee', 'nomfundo@gmail.com', code
         );
-    
+
+        let detailsWaiter3 = await waiter.addWaiter(
+            'Zamo', 'zamo@gmail.com', code
+        );
 
     });
 
 
-    it('should display the waiters schedule from the db test', async function () {
-
-        let waiter = Waiters(db);
-        let getWaiter = await waiter.displayWaiter()
-        assert.deepEqual([{name: "Nomzamo", email: "nomzamo@gmail.com"}, {name: "Nomfundo", email: "nomfundo@gmail.com"}], getWaiter);
-        
-
-    });
-    it('should get filter working shifts by name numbers from the db test', async function () {
-
-
-        let waiter = Waiters(db);
-        let reg = await waiter.filterWaiter('Nomzamo');
-
-
-        assert.equal([{day: "Wednesday", shiftType: "night shift"}, {day: "Thursday", shiftType: "day shift"}], reg);
-
-    });
-    
-    // it('should get filter working shifts by day numbers from the db test', async function () {
+    // it('should check if the code is correct before logging in the new waiter db test', async function () {
 
 
     //     let waiter = Waiters(db);
-    //     let reg = await waiter.filterReg('CY');
+    //     let detailsWaiter = await waiter.getCode(
+    //         'Nomzamo'
+    //     );
 
+    //     let detailsWaiter2 = await waiter.getCode(
+    //         'Nomfundo'
+    //     );
+    
 
-    //     assert.equal("CY 254-562", "CY 254-562", reg);
-
+    //     assert.deepEqual("{code: 'qgrGkv'}", detailsWaiter2);
     // });
+
+
+    it('should be able to show the days the waiter has selected', async function () {
+
+        let waiter = Waiters(db);
+        let getWaiter = await waiter.pickDays("Nomzamo", "Monday")
+        let getDays = await waiter.keepdaysChecked("Nomzamo", "Monday");
+
+        let getDays2 = await waiter.keepdaysChecked("Yonela", "Monday");
+
+
+        assert.equal(true, getDays);
+        assert.equal(false, getDays2);
+
+    });
+    it('should bring back selected days of the specific user', async function () {
+
+
+        let waiter = Waiters(db);
+        let reg = await waiter.selectedDays('Nomzamo');
+
+        assert.deepEqual([], reg);
+
+    });
+    
+    it('should be able to update the waiters days', async function () {
+
+
+        let waiter = Waiters(db);
+        let reg = await waiter.keepdaysChecked('Nomzamo', 'Monday');
+
+
+        assert.equal(true, reg);
+
+    });
 
     // it('should get filter waiter numbers from Paarl the db test', async function () {
 
@@ -89,11 +118,11 @@ describe('The basic database web app', function () {
     //     let getWaiter = await waiter.deleteReg()
     //     assert.equal(undefined, getReg);
     // });
-    afterEach('Drop all tables', async function () {
-        //clean the tables after each test run
-        await db.query("delete from booked_days;");
-        await db.query("delete from users;");
+    // afterEach('Drop all tables', async function () {
+    //     //clean the tables after each test run
+    //     await db.query("delete from booked_days;");
+    //     await db.query("delete from users;");
 
-    });
+    // });
 
 });

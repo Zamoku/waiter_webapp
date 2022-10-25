@@ -59,7 +59,6 @@ module.exports = function WaitersRoutes(waiter) {
     }
 
     async function displayLogin(req, res) {
-        // let user = req.session.user
         var username = req.params.name
         res.render('login', {
             // user: req.session.user,
@@ -94,19 +93,18 @@ module.exports = function WaitersRoutes(waiter) {
     async function displayDays(req, res) {
 
         let waiter_name = req.params.setWaiter
-        let waiter_days = req.body.days
-        let getDays = await waiter.countNames()
+        // let waiter_days = req.body.days
+        // let getDays = await waiter.countNames()
        
         
 
 
         if (waiter_name !== "Admin") {
 
-            // req.flash('success', 'Welcome!')
             res.render('schedule', {
                 name: waiter_name,
                 waiter: await waiter.showDays(),
-                // should be checked
+
                 monday: await waiter.keepdaysChecked(waiter_name, "Monday"),
                 tuesday: await waiter.keepdaysChecked(waiter_name, "Tuesday"),
                 wednesday: await waiter.keepdaysChecked(waiter_name, "Wednesday"),
@@ -116,26 +114,7 @@ module.exports = function WaitersRoutes(waiter) {
                 sunday: await waiter.keepdaysChecked(waiter_name, "Sunday"),
             })
         }
-        else {
-            // req.flash('success', 'Welcome!')
-            res.render('showDays', {
-                name: waiter_name,
-                getDay: waiter_days,
-                getDays: await waiter.countNames(),
-        
-               
-                monday: await waiter.showDaysforAdmin("Monday"),
-                tuesday: await waiter.showDaysforAdmin("Tuesday"),
-                wednesday: await waiter.showDaysforAdmin("Wednesday"),
-                thursday: await waiter.showDaysforAdmin('Thursday'),
-                friday: await waiter.showDaysforAdmin("Friday"),
-                saturday: await waiter.showDaysforAdmin("Saturday"),
-                sunday: await waiter.showDaysforAdmin("Sunday"),
-                
-                
-                
-            })
-        }
+       
         
     }
     async function addDays(req, res) {
@@ -155,13 +134,12 @@ module.exports = function WaitersRoutes(waiter) {
    
 
     async function removeWaiters(req, res) {
-        let waiter_name = req.params.name
 
         
         req.flash('success', 'You have reseted the schedule')
-     
+        await waiter.removeDays()
 
-        res.redirect('/reset')
+        res.redirect('/days')
 
     }
 
@@ -173,18 +151,35 @@ module.exports = function WaitersRoutes(waiter) {
          req.flash('success', 'You have removed the waiters for this day')
          await waiter.deleteWaiterDay(waiter_day)
 
-        res.redirect('/schedule/Admin')
+        res.redirect('/days')
     }
    
-    async function displayPickedDays(req, res) {
+    async function displayForAdmin(req, res) {
 
-        let waiter_name = await waiter.selectedDays(req.body.setWaiter)
+        // let getSelected = await waiter.selectedDays(req.body.setWaiter)
+        // console.log(getSelected)
+
+        let waiter_name = req.params.setWaiter
+
+       
+
+        res.render('showDays', {
+             name: waiter_name,
+             getDays: await waiter.countNames(),
+    
+           
+            monday: await waiter.showDaysforAdmin("Monday"),
+            tuesday: await waiter.showDaysforAdmin("Tuesday"),
+            wednesday: await waiter.showDaysforAdmin("Wednesday"),
+            thursday: await waiter.showDaysforAdmin('Thursday'),
+            friday: await waiter.showDaysforAdmin("Friday"),
+            saturday: await waiter.showDaysforAdmin("Saturday"),
+            sunday: await waiter.showDaysforAdmin("Sunday"),
             
-
-        res.render('admin', {
-            name: waiter_name,
-            days: await waiter.selectedDays(req.body.setWaiter)
+            
         })
+
+
     }
 
     return {
@@ -192,14 +187,11 @@ module.exports = function WaitersRoutes(waiter) {
         displayLogin,
         addDays,
         displayDays,
-        displayPickedDays,
+        displayForAdmin,
         removeWaiters,
         displayReg,
         addCode,
         removeWaiterDay,
-        // getCheckedDays
-        // admin_waiterDays
-
 
     }
 }
