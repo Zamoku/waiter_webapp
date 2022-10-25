@@ -99,7 +99,7 @@ module.exports = function WaitersRoutes(waiter) {
         
 
 
-        if (waiter_name !== "Admin") {
+     
 
             res.render('schedule', {
                 name: waiter_name,
@@ -113,7 +113,6 @@ module.exports = function WaitersRoutes(waiter) {
                 saturday: await waiter.keepdaysChecked(waiter_name, "Saturday"),
                 sunday: await waiter.keepdaysChecked(waiter_name, "Sunday"),
             })
-        }
        
         
     }
