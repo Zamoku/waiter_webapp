@@ -28,7 +28,22 @@ form{
 }
 h3{
   font-style: italic;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: luminari,fantasy;
+}
+h1{
+font: 400 100px/1.5 'Pacifico' !important;
+  color: #2b2b2b;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+}
+h2{
+  font: 400 50px/1.5 'Pacifico' !important;
+  color: #2b2b2b;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+}
+h4{
+  font: 400 25px/1.5 'Pacifico' !important;
+  color: #2b2b2b;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
 }
 a:link{
   text-decoration: none;
@@ -77,4 +92,9 @@ a:link{
 }
 .initial-bottom-row td{
   border-width: 1px 1px 0px 0px;
+}
+.center{
+  margin-left: auto;
+  margin-right: auto;
+
 }
