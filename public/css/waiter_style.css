@@ -31,20 +31,21 @@ h3{
   font-family: luminari,fantasy;
 }
 h1{
-font: 400 100px/1.5 'Pacifico' !important;
+font: 400 50px/1.5 'Pacifico' !important;
   color: #2b2b2b;
   text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
 }
-h2{
-  font: 400 50px/1.5 'Pacifico' !important;
+h2, h3, h4{
+  font: 400 30px/1.5 'Pacifico' !important;
   color: #2b2b2b;
   text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
 }
-h4{
-  font: 400 25px/1.5 'Pacifico' !important;
+p{
+  font: 400 20px/1.5 'Pacifico' !important;
   color: #2b2b2b;
   text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
 }
+
 a:link{
   text-decoration: none;
 }
@@ -97,4 +98,13 @@ a:link{
   margin-left: auto;
   margin-right: auto;
 
+}
+.flex-container{
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: 180px;
+}
+.waiter_img{
+  margin-left: 10px;
+  margin-top: 10px
 }

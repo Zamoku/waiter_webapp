@@ -1,4 +1,4 @@
-<div>
+<div class="box">
 
 
 	<h3>Hi Admin, below is the schedule for available waiters:</h3> <br>
@@ -30,53 +30,53 @@
 			<td class="bg_table">
 
 				
-				<p>{{#each monday}}
-					<a href="/schedule/{{name}}">{{name}} </a><br>
+				{{#each monday}}
+				<a href="/schedule/{{name}}">{{name}} </a><br>
 					{{/each}}
-				</p><br>
+				<br>
 			</td>
 
 			<td>
 				
-				<p>{{#each tuesday}}
+				{{#each tuesday}}
 					<a href="/schedule/{{name}}">{{name}}</a><br>
 					{{/each}}
-				</p><br>
+				<br>
 			</td>
 			<td>
 				
-				<p>{{#each wednesday}}
+				{{#each wednesday}}
 					<a href="/schedule/{{name}}">{{name}}</a> <br>
 					{{/each}}
-				</p><br>
+				<br>
 			</td>
 			<td>
 				
-				<p>{{#each thursday}}
+				{{#each thursday}}
 					<a href="/schedule/{{name}}">{{name}}</a> <br>
 					{{/each}}
-				</p><br>
+				<br>
 			</td>
 			<td>
 				
-				<p>{{#each friday}}
+				{{#each friday}}
 					<a href="/schedule/{{name}}">{{name}}</a> <br>
 					{{/each}}
-				</p>
+				
 			</td>
 			<td>
 				
-				<p>{{#each saturday}}
+				{{#each saturday}}
 					<a href="/schedule/{{name}}">{{name}}</a> <br>
 					{{/each}}
-				</p>
+				
 			</td>
 			<td>
 			
-				<p>{{#each sunday}}
+				{{#each sunday}}
 					<a href="/schedule/{{name}}">{{name}}</a> <br>
 					{{/each}}
-				</p>
+			
 			</td>
 		</tr>
 
