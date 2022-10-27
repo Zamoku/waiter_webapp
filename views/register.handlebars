@@ -1,8 +1,8 @@
 <div class="container-fluid bg-1 ">
     <form autocomplete="off" class=" center form-horizontal" action="/" method="POST">
 
-    
-        <h2 class=""><b>Register</b></h2>
+    <div class="reg-container">
+        <h2 class="register"><b>Register</b></h2>
         <div class="center form-group">
 
             {{#if messages.success}}
@@ -44,13 +44,13 @@
                 <input class="form-control" type="text" name="email">
                 </div>
             </div>
-            <div class="col-sm-offset-2 col-sm-4">
-            <button class="btn btn-success" type="submit">Submit</button>
+            <div class="col-sm-offset-2 col-sm-4 buttons">
+            <button class="btn btn-lg btn-success" type="submit">Submit</button> <a class="admin-btn btn btn-lg btn-info" href="/login/Admin" type="" name="">Login as Admin</a>
             </div>
         </div>
         </div>
-
-        <a class="btn btn-info" href="/login/Admin" type="" name="">Login as Admin</a>
+</div>
+      
 
     </form>
 </div>
