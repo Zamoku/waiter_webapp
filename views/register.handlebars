@@ -2,7 +2,7 @@
     <form autocomplete="off" class=" center form-horizontal" action="/" method="POST">
 
     
-        <h2 class="text-center"><b>Register</b></h2>
+        <h2 class=""><b>Register</b></h2>
         <div class="center form-group">
 
             {{#if messages.success}}
@@ -21,6 +21,7 @@
             </div>
             {{/if}}
 
+            <div class="center" style="margin-left: auto; margin-right:auto">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="">Firstname:</label>
                 <div class="col-sm-3">
@@ -46,6 +47,7 @@
             <div class="col-sm-offset-2 col-sm-4">
             <button class="btn btn-success" type="submit">Submit</button>
             </div>
+        </div>
         </div>
 
         <a class="btn btn-info" href="/login/Admin" type="" name="">Login as Admin</a>
