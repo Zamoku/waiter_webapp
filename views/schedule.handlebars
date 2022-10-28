@@ -1,53 +1,65 @@
 <style>
-      .day {
-        font-family: 'Trirong';
-	    font-size:large;
+	.day {
+		font-family: 'Trirong';
+		font-size: large;
 		padding-left: 18vh;
-        
-      }
-	  .forfont{
-		   font-family: 'Trirong';
-	       font-size:large;
-	  }
-    </style>
+
+	}
+
+	.forfont {
+		font-family: 'Trirong';
+		font-size: large;
+	}
+</style>
 <div>
 	<form class="container" action="/schedule/{{name}}" method="POST">
 		<div class="bg-amber-200 m-8 p-6">
 
 
-			  {{#if messages.welcomeback}}
-            <div class="alert alert-success text-center">
-                <p id="successMessage"> {{messages.welcomeback}}</p>
+			{{#if messages.welcomeback}}
+			<div class="alert alert-success text-center">
+				<p id="successMessage"> {{messages.welcomeback}}</p>
 
-            </div>
-            {{/if}}
-			
+			</div>
+			{{/if}}
 
-			<div class="forfont text-center"><h4><strong><u>Hi <span class="text-warning">{{name}},</span> please select the days that you would like to work on:</u></strong><br></h4></div>
+
+			<div class="forfont text-center">
+				<h4><strong><u>Hi <span class="text-warning">{{name}},</span> please select the days that you would like
+							to work on:</u></strong><br></h4>
+			</div>
 			<br>
 
 			<div class="day d-grid gap-3 ml-100 b-1">
 
-				<div class="checkbox checkbox-success day"><input class="gap-2" type="checkbox" name="days" value="Monday" {{#if monday}}checked{{/if}}>Monday</div>
-				<div class="checkbox checkbox-success day"><input type="checkbox" name="days" value="Tuesday" {{#if tuesday}}checked{{/if}}>Tuesday</div>
-				<div class="day checkbox checkbox-success" ><input type="checkbox" name="days" value="Wednesday" {{#if wednesday}}checked{{/if}}>Wednesday</div>
-				<div class="checkbox day"><input type="checkbox" name="days" value="Thursday" {{#if thursday}}checked{{/if}}>Thursday</div>
-				<div class="checkbox day"><input type="checkbox" name="days" value="Friday" {{#if friday}}checked{{/if}}>Friday</div>
-				<div class="checkbox day"><input type="checkbox" name="days" value="Saturday" {{#if saturday}}checked{{/if}}>Saturday</div>
-				<div class="checkbox day"><input type="checkbox" name="days" value="Sunday" {{#if sunday}}checked{{/if}}>Sunday</div><br>
-				<div class="day"> 
-				<button class="btn btn-lg btn-success" type="submit">Schedule</button>
+				<div class="checkbox checkbox-success day"><input class="gap-2" type="checkbox" name="days"
+						value="Monday" {{#if monday}}checked{{/if}}>Monday</div>
+				<div class="checkbox checkbox-success day"><input type="checkbox" name="days" value="Tuesday" {{#if
+						tuesday}}checked{{/if}}>Tuesday</div>
+				<div class="day checkbox checkbox-success"><input type="checkbox" name="days" value="Wednesday" {{#if
+						wednesday}}checked{{/if}}>Wednesday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Thursday" {{#if
+						thursday}}checked{{/if}}>Thursday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Friday" {{#if
+						friday}}checked{{/if}}>Friday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Saturday" {{#if
+						saturday}}checked{{/if}}>Saturday</div>
+				<div class="checkbox day"><input type="checkbox" name="days" value="Sunday" {{#if
+						sunday}}checked{{/if}}>Sunday</div><br>
+				<div class="day">
+					<button class="btn btn-lg btn-success" type="submit">Schedule</button>
 				</div>
 			</div>
 		</div>
 	</form>
 	<br>
-			  {{#if messages.success}}
-            <div id="successMessage" class="alert alert-success text-center">
-                <p > {{messages.success}}</p>
-				  <script
-                    type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
-            </div>
-            {{/if}}
+	{{#if messages.success}}
+	<div id="successMessage" class="alert alert-success text-center">
+		<p> {{messages.success}}</p>
+		<script
+			type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
+	</div>
+	{{/if}}
 
+	<a class="btn btn-lg btn-danger" href="/" type="" name="">Logout</a>
 </div>
