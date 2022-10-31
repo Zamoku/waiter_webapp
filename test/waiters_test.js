@@ -121,7 +121,7 @@ describe('The basic database web app', function () {
         let getColorCode = await waiter.countNames();
 
         // let getWaiter = await waiter.deleteReg()
-        assert.equal([
+        assert.deepEqual([
             {
               color: 'warning',
               day: 'Monday',
