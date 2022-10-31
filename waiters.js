@@ -24,7 +24,7 @@ module.exports = function Waiters(db) {
 
         let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
         let result = await db.one("Select count(*) from users where name = $1", [waiters_name])
-
+        
         return result
     }
 
@@ -163,7 +163,6 @@ module.exports = function Waiters(db) {
     /*Displays names of waiters and the days they have booked*/
     async function showDaysforAdmin(weekDay) {
         let results = await db.manyOrNone("SELECT distinct users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1", [weekDay]);
-     
         return results
     }
     /* */
@@ -172,7 +171,6 @@ module.exports = function Waiters(db) {
         let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
         
         let results = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1", [waiters_name]);
-        // console.log(results)
         return results
     }
 

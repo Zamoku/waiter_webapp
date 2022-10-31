@@ -35,94 +35,138 @@ describe('The basic database web app', function () {
     });
 
 
-    // it('should check if the code is correct before logging in the new waiter db test', async function () {
+    it('should check if the code is correct before logging in the new waiter db test', async function () {
 
 
-    //     let waiter = Waiters(db);
-    //     let detailsWaiter = await waiter.getCode(
-    //         'Nomzamo'
-    //     );
+        let waiter = Waiters(db);
+        let detailsWaiter = await waiter.getCode(
+            'Zamoza'
+        );
 
-    //     let detailsWaiter2 = await waiter.getCode(
-    //         'Nomfundo'
-    //     );
+        let detailsWaiter2 = await waiter.getCode(
+            'Zamo'
+        );
+    
+    });
+
+
+    it('should be able to show the days the waiter has selected', async function () {
+
+        let waiter = Waiters(db);
+         let getWaiter = await waiter.pickDays("Zamoza", "Monday")
+        
+        let getDays = await waiter.keepdaysChecked("Zamoza", "Monday");
+
+         let getDays2 = await waiter.keepdaysChecked("Yonela", "Monday");
+
+
+        assert.equal(true, getDays);
+         assert.equal(false, getDays2);
+
+    });
+    it('should bring back selected days of the specific user', async function () {
+
+
+        let waiter = Waiters(db);
+        let reg = await waiter.selectedDays('Zamoza');
+
+        assert.deepEqual([], reg);
+
+    });
+    
+    
+    it('should return names of waiters and the days they have booked', async function () {
+        
+        
+        let waiter = Waiters(db);
+        let getdetails = await waiter.showDaysforAdmin('Monday');
+        
+        let getdetails2 = await waiter.showDaysforAdmin('Tuesday');
+        
+        
+        assert.deepEqual([ { name: 'Zamoza', day: 'Monday' } ], getdetails);
+        assert.deepEqual([], getdetails2);
+        
+        
+    });
+    it('should be able to delete waiters for specific day', async function () {
+
+
+        let waiter = Waiters(db);
+        let reg = await waiter.deleteWaiterDay('Tuesday');
+
+
+        assert.equal(undefined, reg);
+
+    });
+
+    it('should get waiter name from database', async function () {
+
+
+        let waiter = Waiters(db);
+        let reg = await waiter.findUser('Nomzamo');
+        let reg2 = await waiter.findUser('Zamoza');
+
+
+        assert.deepEqual({ count: '0' }, reg);
+        assert.deepEqual({ count: '1' }, reg2);
+
+    });
+
+    
+    it('should return the string "danger" if waiters are more than 3 in a day, "warning" if there is less than 3 and "booked" if there are 3', async function () {
+
+
+        let waiter = Waiters(db);
+        let getColorCode = await waiter.countNames();
+
+        // let getWaiter = await waiter.deleteReg()
+        assert.deepEqual([
+            {
+              color: 'warning',
+              day: 'Monday',
+              id: 1
+            },
+            {
+              color: 'warning',
+              day: 'Tuesday',
+              id: 2
+            },
+            {
+              color: 'warning',
+              day: 'Wednesday',
+              id: 3
+            },
+            {
+              color: 'warning',
+              day: 'Friday',
+              id: 5
+            },
+            {
+              color: 'warning',
+              day: 'Saturday',
+              id: 6
+            },
+            {
+              color: 'warning',
+              day: 'Sunday',
+              id: 7
+            } 
+            ,{
+                color: 'warning',
+                day: 'Thursday',
+                id: 4
+              },
+          ], getColorCode);
+    });
+
     
 
-    //     assert.deepEqual("{code: 'qgrGkv'}", detailsWaiter2);
-    // });
+    before('Drop all tables', async function () {
+        //clean the tables after each test run
+        await db.query("delete from booked_days;");
+        await db.query("delete from users;");
 
-
-    // it('should be able to show the days the waiter has selected', async function () {
-
-    //     let waiter = Waiters(db);
-    //     let getWaiter = await waiter.pickDays("Nomzamo", "Monday")
-    //     let getDays = await waiter.keepdaysChecked("Nomzamo", "Monday");
-
-    //     let getDays2 = await waiter.keepdaysChecked("Yonela", "Monday");
-
-
-    //     assert.equal(true, getDays);
-    //     assert.equal(false, getDays2);
-
-    // });
-    // it('should bring back selected days of the specific user', async function () {
-
-
-    //     let waiter = Waiters(db);
-    //     let reg = await waiter.selectedDays('Nomzamo');
-
-    //     assert.deepEqual([], reg);
-
-    // });
-    
-    // it('should be able to update the waiters days', async function () {
-
-
-    //     let waiter = Waiters(db);
-    //     let reg = await waiter.keepdaysChecked('Nomzamo', 'Monday');
-
-
-    //     assert.equal(true, reg);
-
-    // });
-
-    // it('should get filter waiter numbers from Paarl the db test', async function () {
-
-
-    //     let waiter = Waiters(db);
-    //     let reg = await waiter.filterReg('CJ');
-
-
-    //     assert.equal("CJ 254-562", "CJ 254-562", reg);
-
-    // });
-
-    // it('should get filter waiter numbers from Cape Town the db test', async function () {
-
-
-    //     let waiter = Waiters(db);
-    //     let reg = await waiter.filterReg('CA');
-
-
-    //     assert.equal("CA 254-562", "CA 254-562", reg);
-
-    // });
-
-    
-    // it('should clear the list of waiter numbers in the db test and bring back a success message', async function () {
-
-
-    //     let waiter = Waiters(db);
-    //     await waiter.deleteReg();
-
-    //     let getWaiter = await waiter.deleteReg()
-    //     assert.equal(undefined, getReg);
-    // });
-    // afterEach('Drop all tables', async function () {
-    //     //clean the tables after each test run
-    //     await db.query("delete from booked_days;");
-    //     await db.query("delete from users;");
-
-    // });
+    });
 
 });
