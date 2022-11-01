@@ -1,4 +1,4 @@
-module.exports = function WaitersRoutes(waiter) {
+module.exports = function WaitersRoutes(waiter, db) {
 
     const ShortUniqueId = require("short-unique-id")
     const uid = new ShortUniqueId({ length: 6 });
@@ -22,7 +22,6 @@ module.exports = function WaitersRoutes(waiter) {
         
         const get_user = await waiter.findUser(name)
 
-        console.log(req.session.user)
 
         if (get_user.count == 1) {
 
@@ -45,7 +44,7 @@ module.exports = function WaitersRoutes(waiter) {
         }
         else {
 
-            let waiter_name = await waiter.addWaiter(name, email, code)
+             await waiter.addWaiter(name, email, code)
 
 
             req.flash('success', 'You have succesfully registered, your code is: ' + code)
@@ -63,7 +62,6 @@ module.exports = function WaitersRoutes(waiter) {
            
             username: username
         })
-
     }
 
     async function addCode(req, res) {
@@ -117,12 +115,30 @@ module.exports = function WaitersRoutes(waiter) {
     }
     async function addDays(req, res) {
         
-        
-        req.flash('success', 'You have succesfully added your working days!')
-        
-       
-        await waiter.pickDays(req.params.name, req.body.days)
-    
+        let waiter_name = req.params.name
+        let days = req.body.days
+
+        let pickedDays = Array.isArray(days) === false ? [days] : days
+      
+   
+        if(!pickedDays){
+            
+            req.flash('error', 'No days selected!')
+            await waiter.deleteByName(waiter_name)
+
+         
+        }
+         if(pickedDays.length < 3){
+            req.flash('error', 'Please select 3 days or more')
+            
+            
+        }
+       else{
+
+            await waiter.pickDays(req.params.name, req.body.days)
+            
+            req.flash('success', 'You have succesfully added your working days!')
+        }
     
     
         res.redirect(`/schedule/${req.params.name}`)

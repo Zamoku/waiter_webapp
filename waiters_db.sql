@@ -41,4 +41,5 @@ INSERT INTO days(day) VALUES ('Monday'),('Tuesday'),('Wednesday'),('Thursday'),(
 
 -- ALTER TABLE users DROP COLUMN booked_day_id;
 
+-- DELETE t1 FROM booked_days AS t1 INNER JOIN users AS t2 ON t1.name_id = t2.id WHERE t2.name = 'Nomzamo';
 

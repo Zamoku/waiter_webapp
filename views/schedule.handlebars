@@ -48,7 +48,10 @@
 						sunday}}checked{{/if}}>Sunday</div><br>
 				<div class="day">
 					<button class="btn btn-lg btn-success" type="submit">Schedule</button>
+					<a class="btn btn-lg btn-danger" href="/" type="" name="">Logout</a>
 				</div>
+
+
 			</div>
 		</div>
 	</form>
@@ -61,5 +64,13 @@
 	</div>
 	{{/if}}
 
-	<a class="btn btn-lg btn-danger" href="/" type="" name="">Logout</a>
+	  {{#if messages.error}}
+            <div id="successMessage" class="alert alert-danger text-center">
+                <p id="successMessage"> <b>{{messages.error}}</b></p>
+                <script
+                    type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script>
+
+            </div>
+            {{/if}}
+
 </div>
