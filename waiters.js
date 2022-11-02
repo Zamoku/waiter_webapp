@@ -84,7 +84,6 @@ module.exports = function Waiters(db) {
         let dd = Array.isArray(days) === false ? [days] : days
      
         let resultName = await db.one('Select users.id from users where users.name = $1; ', [waiters_name])
-        console.log(dd);
         if(!dd){
             return
         }
