@@ -116,19 +116,21 @@ module.exports = function WaitersRoutes(waiter, db) {
     async function addDays(req, res) {
         
         let waiter_name = req.params.name
-        let days = req.body.days
+        let pickedDays = req.body.days
 
-        let pickedDays = Array.isArray(days) === false ? [days] : days
+       
       
-   
-        if(!pickedDays){
+        if(pickedDays === undefined){
             
             req.flash('error', 'No days selected!')
             await waiter.deleteByName(waiter_name)
 
          
+        } else if(typeof pickDays === "string"){
+            req.flash('error', 'Please select 3 days or more')
+            
         }
-         if(pickedDays.length < 3){
+        else if(pickedDays.length < 3){
             req.flash('error', 'Please select 3 days or more')
             
             
