@@ -65,7 +65,7 @@ module.exports = function Waiters(db) {
     async function deleteByName(name){
 
 
-        let resultName = await db.oneOrNone('Select users.id from users where users.name = $1; ', [name])
+        let resultName = await db.oneOrNone('Select id from users where name = $1; ', [name])
         console.log(resultName.id)
         await db.none("Delete from booked_days where name_id = $1", [resultName.id])
 
