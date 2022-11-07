@@ -7,3 +7,5 @@ Admins login details are:
 Username: Admin
 Passworword: admin
 email: admin@gmail.com
+
+Admin code --> 9UzbrY
