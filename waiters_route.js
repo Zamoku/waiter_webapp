@@ -118,7 +118,7 @@ module.exports = function WaitersRoutes(waiter, db) {
             req.flash('error', 'Please select 3 days or more')
 
         }
-        else if (pickedDays.length === 3) {
+        else if (pickedDays.length >= 3) {
 
             await waiter.pickDays(req.params.name, req.body.days)
 
