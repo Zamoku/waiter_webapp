@@ -64,9 +64,9 @@ module.exports = function Waiters(db) {
     /*This function gets the users ids and if it gets them it deletes them before adding new data*/
     async function deleteByName(name){
 
-
-        let resultName = await db.oneOrNone('Select id from users where name = $1', [name])
-        console.log(resultName.id)
+        alert(name)
+        let resultName = await db.oneOrNone("Select id from users where name = $1", [name])
+        alert(resultName.id)
         await db.none("Delete from booked_days where name_id = $1", [resultName.id])
 
 
@@ -85,7 +85,7 @@ module.exports = function Waiters(db) {
             return
         }else{
 
-        await deleteByName(name)
+        await db.none("Delete from booked_days where name_id = $1", [resultName.id])
 
         for (let day of dd) {
 

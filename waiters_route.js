@@ -121,12 +121,13 @@ module.exports = function WaitersRoutes(waiter, db) {
        
       
         if(pickedDays === undefined){
-            
+            alert(pickedDays)
             req.flash('error', 'No days selected!')
             await waiter.deleteByName(waiter_name)
-
          
-        } else if(typeof pickDays === "string"){
+        } 
+        else if(typeof pickDays === "string"){
+           
             req.flash('error', 'Please select 3 days or more')
             
         }
@@ -135,15 +136,18 @@ module.exports = function WaitersRoutes(waiter, db) {
             
             
         }
-       else{
+       else if(pickedDays.length === 3){
 
             await waiter.pickDays(req.params.name, req.body.days)
             
             req.flash('success', 'You have succesfully added your working days!')
         }
+        else{
+            req.flash('error', 'Please select 3 days or more')
+        }
     
     
-        res.redirect(`/schedule/${req.params.name}`)
+        res.redirect("/schedule/" + waiter_name)
 
     }
 
