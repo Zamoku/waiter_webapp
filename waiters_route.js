@@ -8,9 +8,7 @@ module.exports = function WaitersRoutes(waiter, db) {
         res.render('register', {
 
         })
-
     }
-
 
     async function addUser(req, res) {
         let regex = /^[a-z A-Z]+$/gi
@@ -19,13 +17,11 @@ module.exports = function WaitersRoutes(waiter, db) {
         let email = req.body.email
         const code = uid()
 
-        
         const get_user = await waiter.findUser(name)
-
 
         if (get_user.count == 1) {
 
-            req.flash('welcomeback','Hi, ' + waitername + ' Welcome back!')
+            req.flash('welcomeback', 'Hi, ' + waitername + ' Welcome back!')
 
             res.redirect("/schedule/" + waitername)
         }
@@ -35,8 +31,6 @@ module.exports = function WaitersRoutes(waiter, db) {
 
             res.redirect("/")
         }
-
-
         else if (name, email == "") {
             req.flash('error', 'No user or email provided')
 
@@ -44,32 +38,27 @@ module.exports = function WaitersRoutes(waiter, db) {
         }
         else {
 
-             await waiter.addWaiter(name, email, code)
-
+            await waiter.addWaiter(name, email, code)
 
             req.flash('success', 'You have succesfully registered, your code is: ' + code)
 
-        
             res.redirect(`/login/${req.body.setWaiter}`)
 
         }
-
     }
 
     async function displayLogin(req, res) {
         var username = req.params.name
         res.render('login', {
-           
+
             username: username
         })
     }
 
     async function addCode(req, res) {
-        let {addCode } = req.body
+        let { addCode } = req.body
         let user = req.params.name
         let getCode = await waiter.getCode(user)
-        
-
 
         if (getCode.code === addCode) {
             req.flash('success', 'You have loged in succesfully')
@@ -77,7 +66,6 @@ module.exports = function WaitersRoutes(waiter, db) {
             res.redirect("/schedule/" + user)
 
         } else if (getCode.code !== addCode) {
-
 
             req.flash('error', 'ENTER THE CORRECT CODE GIVEN!')
 
@@ -90,9 +78,8 @@ module.exports = function WaitersRoutes(waiter, db) {
     async function displayDays(req, res) {
 
         let waiter_name = req.params.setWaiter
-        
-        
-        if(waiter_name !== "Admin"){
+
+        if (waiter_name !== "Admin") {
 
             res.render('schedule', {
                 name: waiter_name,
@@ -106,85 +93,70 @@ module.exports = function WaitersRoutes(waiter, db) {
                 saturday: await waiter.keepdaysChecked(waiter_name, "Saturday"),
                 sunday: await waiter.keepdaysChecked(waiter_name, "Sunday"),
             })
-       
         }
-        else{
+        else {
 
             res.redirect('/days')
         }
     }
     async function addDays(req, res) {
-        
+
         let waiter_name = req.params.name
         let pickedDays = req.body.days
 
-       
-      
-        if(pickedDays === undefined){
-            alert(pickedDays)
+        if (pickedDays === undefined) {
             req.flash('error', 'No days selected!')
             await waiter.deleteByName(waiter_name)
-         
-        } 
-        else if(typeof pickDays === "string"){
-           
-            req.flash('error', 'Please select 3 days or more')
-            
+
         }
-        else if(pickedDays.length < 3){
+        else if (typeof pickDays === "string") {
+
             req.flash('error', 'Please select 3 days or more')
-            
-            
+
         }
-       else if(pickedDays.length === 3){
+        else if (pickedDays.length < 3) {
+            req.flash('error', 'Please select 3 days or more')
+
+        }
+        else if (pickedDays.length === 3) {
 
             await waiter.pickDays(req.params.name, req.body.days)
-            
+
             req.flash('success', 'You have succesfully added your working days!')
         }
-        else{
+        else {
             req.flash('error', 'Please select 3 days or more')
         }
-    
-    
+
         res.redirect("/schedule/" + waiter_name)
-
     }
-
-   
 
     async function removeWaiters(req, res) {
 
-        
         req.flash('success', 'You have reseted the schedule')
         await waiter.removeDays()
 
         res.redirect('/days')
-
     }
 
-    async function removeWaiterDay(req, res){
+    async function removeWaiterDay(req, res) {
 
         let waiter_day = req.params.day
 
-         req.flash('success', 'You have removed the waiters for this day')
-         await waiter.deleteWaiterDay(waiter_day)
+        req.flash('success', 'You have removed the waiters for this day')
+        await waiter.deleteWaiterDay(waiter_day)
 
         res.redirect('/days')
     }
-   
-    async function displayForAdmin(req, res) {
 
+    async function displayForAdmin(req, res) {
 
         let waiter_name = req.params.setWaiter
 
-       
-
         res.render('showDays', {
-             name: waiter_name,
-             getDays: await waiter.countNames(),
-    
-           
+            name: waiter_name,
+            getDays: await waiter.countNames(),
+
             monday: await waiter.showDaysforAdmin("Monday"),
             tuesday: await waiter.showDaysforAdmin("Tuesday"),
             wednesday: await waiter.showDaysforAdmin("Wednesday"),
@@ -192,11 +164,7 @@ module.exports = function WaitersRoutes(waiter, db) {
             friday: await waiter.showDaysforAdmin("Friday"),
             saturday: await waiter.showDaysforAdmin("Saturday"),
             sunday: await waiter.showDaysforAdmin("Sunday"),
-            
-            
         })
-
-
     }
 
     return {

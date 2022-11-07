@@ -1,19 +1,9 @@
 <style>
-	.day {
-		font-family: 'Trirong';
-		font-size: large;
-		padding-left: 18vh;
-
-	}
-
-	.forfont {
-		font-family: 'Trirong';
-		font-size: large;
-	}
+	
 </style>
 <div>
-	<form class="container" action="/schedule/{{name}}" method="POST">
-		<div class="bg-amber-200 m-8 p-6">
+	<form class="container sm" action="/schedule/{{name}}" method="POST">
+		<div class="">
 
 
 			{{#if messages.welcomeback}}
@@ -30,8 +20,8 @@
 			</div>
 			<br>
 
-			<div class="day d-grid gap-3 ml-100 b-1">
-
+			<div class="day">
+				<div class="pickdays">
 				<div class="checkbox checkbox-success day"><input class="gap-2" type="checkbox" name="days"
 						value="Monday" {{#if monday}}checked{{/if}}>Monday</div>
 				<div class="checkbox checkbox-success day"><input type="checkbox" name="days" value="Tuesday" {{#if
@@ -46,7 +36,8 @@
 						saturday}}checked{{/if}}>Saturday</div>
 				<div class="checkbox day"><input type="checkbox" name="days" value="Sunday" {{#if
 						sunday}}checked{{/if}}>Sunday</div><br>
-				<div class="day">
+				</div>
+				<div class="pickbuttons">
 					<button class="btn btn-lg btn-success" type="submit">Schedule</button>
 					<a class="btn btn-lg btn-danger" href="/" type="" name="">Logout</a>
 				</div>
@@ -57,7 +48,7 @@
 	</form>
 	<br>
 	{{#if messages.success}}
-	<div id="successMessage" class="alert alert-success text-center">
+	<div id="successMessage" class="alert alert-succ text-center">
 		<p> {{messages.success}}</p>
 		<script
 			type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
@@ -65,7 +56,7 @@
 	{{/if}}
 
 	  {{#if messages.error}}
-            <div id="successMessage" class="alert alert-danger text-center">
+            <div id="successMessage" class="alert alert-error text-center">
                 <p id="successMessage"> <b>{{messages.error}}</b></p>
                 <script
                     type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script>

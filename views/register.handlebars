@@ -1,56 +1,55 @@
 <div class="container-fluid bg-1 ">
-    <form autocomplete="off" class=" center form-horizontal" action="/" method="POST">
+    <form autocomplete="off" class="center form-horizontal" action="/" method="POST">
 
-    <div class="reg-container">
-        <h2 class="register"><b>Register</b></h2>
-        <div class="center form-group">
+        <div class="reg-container">
+            <h2 class="register"><b>Register</b></h2>
+            <div class="center form-group">
 
-            {{#if messages.success}}
-            <div class="alert alert-success" >
-                <p id="successMessage"> {{messages.success}}</p>
+                {{#if messages.success}}
+                <div class="alert alert-succ">
+                    <p id="successMessage">{{messages.success}}</p>
 
-            </div>
-            {{/if}}
-
-            {{#if messages.error}}
-            <div id="successMessage" class="alert alert-danger">
-                <p id="successMessage"> {{messages.error}}</p>
-                <script
-                    type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
-
-            </div>
-            {{/if}}
-
-            <div class="center" style="margin-left: auto; margin-right:auto">
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="">Firstname:</label>
-                <div class="col-sm-3">
-                <input class="form-control" type="text" name="setWaiter">
                 </div>
-            </div>
+                {{/if}}
 
-            <div class="form-group">
-
-                <label class="control-label col-sm-2" for="">Lastname:</label>
-                <div class="col-sm-3">
-                <input class="form-control" type="text" name="lastname">
+                {{#if messages.error}}
+                <div id="successMessage" class="alert alert-error">
+                    <p id="successMessage"> {{messages.error}}</p>
+                    <script
+                        type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
                 </div>
-            </div>
 
-            <div class="form-group">
+                {{/if}}
 
-                <label class="control-label col-sm-2" for="">Email:</label>
-                <div class="col-sm-3" >
-                <input class="form-control" type="text" name="email">
+                <div class="center" style="margin-left: auto; margin-right:auto">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="">Firstname:</label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" name="setWaiter">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="control-label col-sm-2" for="">Lastname:</label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" name="lastname">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="control-label col-sm-2" for="">Email:</label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" name="email">
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-4 buttons">
+                        <button class="btn btn-lg btn-success" type="submit">Submit</button> <a
+                            class="admin-btn btn btn-lg btn-info" href="/login/Admin" type="" name="">Login as Admin</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-offset-2 col-sm-4 buttons">
-            <button class="btn btn-lg btn-success" type="submit">Submit</button> <a class="admin-btn btn btn-lg btn-info" href="/login/Admin" type="" name="">Login as Admin</a>
             </div>
         </div>
-        </div>
-</div>
-      
-
     </form>
 </div>

@@ -1,10 +1,9 @@
 module.exports = function Waiters(db) {
 
-    let results = ''
-/*
- Gets current names from the database if name is there in not the database then
- Adds the name, email and unique code of the waiter when registers the first time
-  */
+    /*
+     Gets current names from the database if name is there in not the database then
+     Adds the name, email and unique code of the waiter when registers the first time
+      */
     async function addWaiter(name, email, code) {
 
         let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
@@ -19,12 +18,12 @@ module.exports = function Waiters(db) {
         return results
     }
 
-   /*Gets the number the user appears in the database */
+    /*Gets the number the user appears in the database */
     async function findUser(name) {
 
         let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
         let result = await db.one("Select count(*) from users where name = $1", [waiters_name])
-        
+
         return result
     }
 
@@ -38,13 +37,6 @@ module.exports = function Waiters(db) {
         return uniq_code
 
     }
-
-    /*  */
-    // async function showAllDays() {
-    //     let results = await db.manyOrNone("SELECT * from users Inner Join days on Days.id = users.booked_day_id");
-
-    //     return results
-    // }
 
     /*Resets the data from the users(waiters) table*/
     async function removeAll() {
@@ -60,59 +52,56 @@ module.exports = function Waiters(db) {
 
     }
 
-
     /*This function gets the users ids and if it gets them it deletes them before adding new data*/
-    async function deleteByName(name){
+    async function deleteByName(name) {
 
-        alert(name)
         let resultName = await db.oneOrNone("Select id from users where name = $1", [name])
-        alert(resultName.id)
+        
         await db.none("Delete from booked_days where name_id = $1", [resultName.id])
 
-
     }
+
     async function pickDays(name, days) {
-       
+
         let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
 
         let dd = Array.isArray(days) === false ? [days] : days
-     
+
         let resultName = await db.one('Select users.id from users where users.name = $1; ', [waiters_name])
-        if(!dd){
+        if (!dd) {
             return
         }
-        if(dd.length < 3){
+        if (dd.length < 3) {
             return
-        }else{
+        } else {
 
-        await db.none("Delete from booked_days where name_id = $1", [resultName.id])
+            await db.none("Delete from booked_days where name_id = $1", [resultName.id])
 
-        for (let day of dd) {
+            for (let day of dd) {
 
-            let resultDay = await db.oneOrNone('Select days.id from days where days.day = $1', [day])
-            
-                if(resultDay !== null ){
+                let resultDay = await db.oneOrNone('Select days.id from days where days.day = $1', [day])
 
-                   await db.none("INSERT INTO booked_days(name_id, booked_day_id) VALUES ($1,$2)", [resultName.id, resultDay.id])
+                if (resultDay !== null) {
+
+                    await db.none("INSERT INTO booked_days(name_id, booked_day_id) VALUES ($1,$2)", [resultName.id, resultDay.id])
                 }
 
-           
+
+            }
         }
-    }
 
     }
-    
 
     /*Checks if the days are checked if true then keep them checked */
-    async function keepdaysChecked(name, day){
-        
+    async function keepdaysChecked(name, day) {
+
 
         let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
 
-            let result = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where users.name = $1 and days.day = $2", [waiters_name, day])
-            checked = result.length > 0 ? true : false
+        let result = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where users.name = $1 and days.day = $2", [waiters_name, day])
+        checked = result.length > 0 ? true : false
 
-             return checked
+        return checked
 
     }
 
@@ -127,42 +116,38 @@ module.exports = function Waiters(db) {
     if they are more than three assign a string danger
     if names are equal to three assign a string booked
     if the names are less than 3 assign a string warning*/
-    async function countNames(){
+    async function countNames() {
         const weekDay = await getDays()
-         
-        for(let day of weekDay){
-            
-            let result = await db.oneOrNone("Select count(*) from booked_days where booked_day_id = $1", [day.id])
-          
-            const count = Number(result.count);
-            
-         
-    
-                    if(count > 3){
-                        day.color = "danger"
-                    }
-                    else if(count === 3){
-                        day.color = "booked"
-                    }
-                    else if(count < 3){
-                        day.color = "warning"
-                    }
-    
-                }
-          return weekDay
-     }
 
-     /*Removes all data from the booked_days table which include the days id's picked by specific user*/
+        for (let day of weekDay) {
+
+            let result = await db.oneOrNone("Select count(*) from booked_days where booked_day_id = $1", [day.id])
+
+            const count = Number(result.count);
+
+            if (count > 3) {
+                day.color = "danger"
+            }
+            else if (count === 3) {
+                day.color = "booked"
+            }
+            else if (count < 3) {
+                day.color = "warning"
+            }
+
+        }
+        return weekDay
+    }
+
+    /*Removes all data from the booked_days table which include the days id's picked by specific user*/
     async function removeDays() {
         let results = await db.none("Delete from booked_days")
 
     }
 
- 
     async function deleteWaiterDay(day) {
         let getbookedDayId = await db.one("SELECT id from days where day = $1", [day])
         let results = await db.none("Delete from booked_days where booked_day_id = $1;", [getbookedDayId.id]);
-    
     }
 
     /*Displays names of waiters and the days they have booked*/

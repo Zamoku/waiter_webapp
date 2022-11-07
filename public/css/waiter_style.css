@@ -1,3 +1,16 @@
+body{
+  background-color: HEX: #b2ad7f;
+}
+.box-cover{
+  background-color: #E6E6FA;
+  height: 800px;
+}
+.app_name {
+  padding-left: 110px
+}
+.box-in{
+  padding-top: 80px;
+}
 table,
 th,
 td {
@@ -5,6 +18,17 @@ td {
   border: 1px solid black;
   border-collapse: collapse;
   
+}
+.day {
+  font-family: 'Trirong';
+  font-size: large;
+  padding-left: 35vh;
+  height: 28px;
+}
+
+.forfont {
+  font-family: 'Trirong';
+  font-size: large;
 }
 
 form{
@@ -16,7 +40,6 @@ form{
 }
 .danger{
   background-color: red !important;
-  
 }
 .warning{
   background-color: orange !important;
@@ -24,7 +47,6 @@ form{
 }
 .booked{
   background-color: green;
- 
 }
 h3{
   font-style: italic;
@@ -49,13 +71,6 @@ p{
 a:link{
   text-decoration: none;
 }
-/* .dot{
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-} */
 
 .circle {
   height: 20px;
@@ -106,7 +121,9 @@ a:link{
 }
 .waiter_img{
   margin-left: 10px;
-  margin-top: 10px
+  margin-top: 10px;
+  width:90px;
+  height:90px
 }
 .register{
   margin-left: 50px;
@@ -123,6 +140,49 @@ a:link{
 .schedule-btn{
   margin-left: 20px;
 }
-.pickdays{
-  margin-left: 50px;
+.pickbuttons{
+  margin-left: 170px;
+}
+.alert-error{
+  background-color: #FF6347;
+  width: 920px;
+  height: 60px;
+  margin-left: 120px;
+}
+.alert-succ{
+  background-color: #32de84;
+  width: 920px;
+  height: 60px;
+  margin-left: 120px;
+}
+@media (max-width: 440px)  {
+  .box-cover {
+    background-color: lightgreen;
+    height: 880px;
+  }
+  .center{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pickday{
+    font-family: 'Trirong';
+    font-size: large;
+    padding-left: 315vh;
+  }
+  form{
+    margin-left: ;
+    margin-top: ;
+  }
+  .app_name {
+    padding-left: 7px;
+  }
+  .day {
+    font-family: 'Trirong';
+    font-size: large;
+    padding-left: 5vh;
+    height: 28px;
+  }
+  .pickbuttons{
+    margin-left: 10px;
+  }
 }
