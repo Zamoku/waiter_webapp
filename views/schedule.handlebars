@@ -6,6 +6,24 @@
 		<div class="">
 
 
+	<div class="pop_up_msg">
+		{{#if messages.success}}
+		<div id="successMessage" class="alert alert-succ text-center">
+			<p> {{messages.success}}</p>
+			<script
+				type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
+		</div>
+		{{/if}}
+
+		{{#if messages.error}}
+		<div id="successMessage" class="alert alert-error text-center">
+			<p id="successMessage"> <b>{{messages.error}}</b></p>
+			<script
+				type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script>
+
+		</div>
+		{{/if}}
+	</div>
 			{{#if messages.welcomeback}}
 			<div class="alert alert-success text-center">
 				<p id="successMessage"> {{messages.welcomeback}}</p>
@@ -47,22 +65,4 @@
 		</div>
 	</form>
 	<br>
-	<div class="pop_up_msg">
-		{{#if messages.success}}
-		<div id="successMessage" class="alert alert-succ text-center">
-			<p> {{messages.success}}</p>
-			<script
-				type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 3000); </script>
-		</div>
-		{{/if}}
-
-		{{#if messages.error}}
-		<div id="successMessage" class="alert alert-error text-center">
-			<p id="successMessage"> <b>{{messages.error}}</b></p>
-			<script
-				type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script>
-
-		</div>
-		{{/if}}
-	</div>
 </div>

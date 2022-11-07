@@ -155,9 +155,9 @@ a:link{
   height: 60px;
   margin-left: 120px;
 }
-.pop_up_msg{
+/* .pop_up_msg{
   margin-top: 280px;
-}
+} */
 @media (max-width: 440px)  {
   .box-cover {
     background-color: lightgreen;
