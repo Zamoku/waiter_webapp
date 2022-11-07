@@ -59,20 +59,14 @@ module.exports = function Waiters(db) {
         return results
 
     }
-    /* */
-    // async function checkDaysBooked(name) {
-    //     let results = await db.manyOrNone("Select * from booked_days where name = $1", [name])
 
-    //     return results
-    // }
 
     /*This function gets the users ids and if it gets them it deletes them before adding new data*/
     async function deleteByName(name){
 
-        //let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
 
         let resultName = await db.oneOrNone('Select users.id from users where users.name = $1; ', [name])
-
+        console.log(resultName.id)
         await db.none("Delete from booked_days where name_id = $1", [resultName.id])
 
 
@@ -92,7 +86,6 @@ module.exports = function Waiters(db) {
         }else{
 
         await deleteByName(name)
-        // await db.none("Delete from booked_days where name_id = $1", [resultName.id])
 
         for (let day of dd) {
 
@@ -177,14 +170,6 @@ module.exports = function Waiters(db) {
         let results = await db.manyOrNone("SELECT distinct users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1", [weekDay]);
         return results
     }
-    /* */
-    // async function selectedDays(name) {
-
-    //     let waiters_name = name.charAt(0).toUpperCase() + name.slice(1);
-        
-    //     let results = await db.manyOrNone("SELECT users.name, days.day from booked_days AS bd Inner join users on users.id = bd.name_id Inner join days on days.id = bd.booked_day_id where days.day = $1", [waiters_name]);
-    //     return results
-    // }
 
 
     return {
@@ -192,7 +177,6 @@ module.exports = function Waiters(db) {
         removeAll,
         showDays,
         pickDays,
-        // selectedDays,
         showDaysforAdmin,
         removeDays,
         findUser,
