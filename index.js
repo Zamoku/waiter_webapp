@@ -5,7 +5,6 @@ const flash = require('express-flash');
 const session = require('express-session');
 const Waiters = require('./waiters');
 const WaitersRoutes = require('./waiters_route');
-const WaitersFunct = require('./waiters_non_db');
 
 
 const pgPromise = require("pg-promise")

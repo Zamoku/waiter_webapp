@@ -4,6 +4,7 @@ body{
 .box-cover{
   background-color: #E6E6FA;
   height: 800px;
+  padding: 40px;
 }
 .app_name {
   padding-left: 110px
